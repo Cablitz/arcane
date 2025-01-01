@@ -1,3 +1,5 @@
+local Players = game:GetService("Players")
+
 local blink = require("@blink/client")
 local jecs = require("@packages/jecs")
 
@@ -7,6 +9,7 @@ local world = std.world
 
 local cts = require("@common/cts")
 local Character = cts.Character
+local Client = cts.Client
 
 local function addCharacters()
     for _, player, character in blink.AddCharacter.Iter() do
@@ -14,6 +17,10 @@ local function addCharacters()
         local characterEntity = ref(character)
         world:set(characterEntity, Character, character)
         world:set(characterEntity, jecs.pair(jecs.ChildOf, playerEntity))
+
+        if player == Players.LocalPlayer then
+            world:add(characterEntity, Client)
+        end
     end
 end
 
