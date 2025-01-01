@@ -1,7 +1,7 @@
 local jecs = require("@packages/jecs")
 
 local pair = jecs.pair
-local childOf = jecs.ChildOf
+local ChildOf = jecs.ChildOf
 
 local std = require("@common/std")
 local world = std.world
@@ -24,10 +24,10 @@ local function charactersAttack(state: ClientState)
         if canAttack(characterEntity) and state.input.actions:justPressed("attack") then
             local attackEntity = world:entity()
             world:add(attackEntity, Attack)
-            world:set(attackEntity, pair(childOf, characterEntity))
+            world:set(attackEntity, pair(ChildOf, characterEntity))
 
             world:add(characterEntity, pair(Active, Attack))
-
+            world:set(characterEntity, pair(Cooldown, Attack), 3)
             print("attack")
         end
     end

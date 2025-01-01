@@ -14,7 +14,7 @@ local world = std.world
 local jabbyPlugin = PlanckJabby.new()
 local hooksPlugin = matterHooks.Plugin.new(ReplicatedStorage.Packages._Index["matter-ecs_matter@0.8.5"])
 
-local function start(modules, state)
+local function start(containers: {Instance}, state)
     local scheduler = planck.Scheduler.new(state)
         :addPlugin(jabbyPlugin)
         :addPlugin(hooksPlugin)
@@ -29,8 +29,10 @@ local function start(modules, state)
 
     jabby.public.updated = true
 
-    for _, module in modules do
-        scheduler:addSystem(require(module))
+    for _, container in containers do
+        for _, module: ModuleScript in container:GetChildren() do
+            scheduler:addSystem(require(module))
+        end
     end
 
     jabby.set_check_function(function(player)
