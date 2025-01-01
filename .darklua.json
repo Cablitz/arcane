@@ -10,7 +10,7 @@
                     "@server": "src/server",
                     "@services": "src/server/services",
                     "@common": "src/common",
-                    "@zap": ".zap",
+                    "@blink": ".blink",
                     "@packages": "./packages",
                     "@serverpackages": "./serverPackages"
                 }

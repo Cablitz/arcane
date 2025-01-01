@@ -1,9 +1,18 @@
 option ServerOutput = ".blink/server.luau"
 option ClientOutput = ".blink/client.luau"
 
-event MyFirstEvent {
+option UsePolling = true
+
+event AddPlayer {
     from: Server,
     type: Reliable,
     call: SingleSync,
-    data: string
+    data: Instance(Player)
+}
+
+event AddCharacter {
+    from: Server,
+    type: Reliable,
+    call: SingleSync,
+    data: (Instance(Player), Instance(Model))
 }

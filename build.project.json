@@ -11,7 +11,7 @@
                 "$path": "dist/common"
             },
             "network": {
-                "$path": ".zap/client.lua"
+                "$path": ".blink/client.luau"
             },
             "Packages": {
                 "$className": "Folder",
@@ -23,7 +23,7 @@
                 "$path": "dist/server"
             },
             "network": {
-                "$path": ".zap/server.lua"
+                "$path": ".blink/server.luau"
             },
             "ServerPackages": {
                 "$className": "Folder",
