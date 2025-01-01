@@ -8,3 +8,4 @@ globalTypes.d.lua
 
 **/sourcemap.json
 dist/
+.zap/
