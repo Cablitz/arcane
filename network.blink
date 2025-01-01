@@ -1,0 +1,9 @@
+option ServerOutput = ".blink/server.luau"
+option ClientOutput = ".blink/client.luau"
+
+event MyFirstEvent {
+    from: Server,
+    type: Reliable,
+    call: SingleSync,
+    data: string
+}
