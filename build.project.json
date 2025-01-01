@@ -1,0 +1,34 @@
+{
+    "name": "chainsaw",
+    "emitLegacyScripts": false,
+    "tree": {
+        "$className": "DataModel",
+        "ReplicatedStorage": {
+            "client": {
+                "$path": "dist/client"
+            },
+            "common": {
+                "$path": "dist/common"
+            },
+            "network": {
+                "$path": ".zap/client.lua"
+            },
+            "Packages": {
+                "$className": "Folder",
+                "$path": "./packages"
+            }
+        },
+        "ServerScriptService": {
+            "server": {
+                "$path": "dist/server"
+            },
+            "network": {
+                "$path": ".zap/server.lua"
+            },
+            "ServerPackages": {
+                "$className": "Folder",
+                "$path": "./serverPackages"
+            }
+        }
+    }
+}

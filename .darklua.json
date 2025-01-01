@@ -1,0 +1,25 @@
+{
+    "rules": [
+        {
+            "rule": "convert_require",
+            "current": {
+                "name": "path",
+                "sources": {
+                    "@client": "src/client",
+                    "@controllers": "src/client/controllers",
+                    "@server": "src/server",
+                    "@services": "src/server/services",
+                    "@common": "src/common",
+                    "@zap": ".zap",
+                    "@packages": "./packages",
+                    "@serverpackages": "./serverPackages"
+                }
+            },
+            "target": {
+                "name": "roblox",
+                "rojo_sourcemap": "sourcemap.json",
+                "indexing_style": "wait_for_child"
+            }
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "aliases": {
+        "client": "src/client",
+        "controllers": "src/client/controllers",
+        "server": "src/server",
+        "services": "src/server/services",
+        "common": "src/common",
+        "zap": ".zap",
+        "packages": "./packages",
+        "serverpackages": "./serverPackages"
+    },
+    "lintErrors": false,
+    "typeErrors": true,
+    "lint": {
+        "*": true
+    }
+}
