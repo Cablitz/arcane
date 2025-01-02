@@ -9,6 +9,7 @@ local Attack = cts.Attack
 local Active = cts.Active
 local Cooldown = cts.Cooldown
 local Animation = cts.Animation
+local Hitbox = cts.Hitbox
 
 local pair = jecs.pair
 
@@ -18,11 +19,10 @@ local function attack()
         local animation = world:get(characterEntity, pair(Animation, Attack)) :: AnimationTrack
 
         for _ in matter.useEvent(animation, animation:GetMarkerReachedSignal("hitbox")) do
-            print("hitbox")
+            world:add(attackEntity, Hitbox)
         end
 
         for _ in matter.useEvent(animation, animation.Ended) do
-            print("ended")
             world:remove(characterEntity, pair(Active, Attack))
             world:delete(attackEntity)
         end

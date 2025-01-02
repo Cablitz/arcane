@@ -17,6 +17,10 @@ local Animation = cts.Animation
 local clientState = require("@common/constants/client-state")
 type ClientState = clientState.ClientState
 
+local attackConfig = {
+    cooldown = 0.5,
+}
+
 local function canAttack(characterEntity)
     return not world:has(characterEntity, pair(Cooldown, Attack)) and not world:has(characterEntity, pair(Active, Attack))
 end
@@ -33,7 +37,7 @@ local function charactersAttack(state: ClientState)
             animation:Play()
 
             world:add(characterEntity, pair(Active, Attack))
-            world:set(characterEntity, pair(Cooldown, Attack), 0.5)
+            world:set(characterEntity, pair(Cooldown, Attack), attackConfig.cooldown)
         end
     end
 end

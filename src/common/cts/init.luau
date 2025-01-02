@@ -12,6 +12,7 @@ local components: {
     Active: Entity,
     Cooldown: Entity,
     Attack: Entity,
+    Hitbox: Entity,
     Walk: Entity,
     Animation: Entity,
 } = {
@@ -21,6 +22,7 @@ local components: {
     Active = world:component(),
     Cooldown = world:component(),
     Attack = world:component(),
+    Hitbox = world:component(),
     Walk = world:component(),
     Animation = world:component(),
 }
