@@ -29,6 +29,12 @@
                 "$className": "Folder",
                 "$path": "./serverPackages"
             }
+        },
+        "StarterPlayer": {
+            "$className": "StarterPlayer",
+            "$properties": {
+                "GameSettingsAvatar": "R6"
+            }
         }
     }
 }

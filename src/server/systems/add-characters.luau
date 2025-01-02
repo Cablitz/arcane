@@ -2,6 +2,9 @@ local jecs = require("@packages/jecs")
 local matter = require("@packages/matter")
 local blink = require("@blink/server")
 
+local pair = jecs.pair
+local ChildOf = jecs.ChildOf
+
 local std = require("@common/std")
 local world = std.world
 local ref = std.ref
@@ -15,7 +18,8 @@ local function addCharacters()
         for _, character in matter.useEvent(player, "CharacterAdded") do
             local characterEntity = ref(character)
             world:set(characterEntity, Character, character)
-            world:set(characterEntity, jecs.pair(jecs.ChildOf, playerEntity))
+            world:set(characterEntity, pair(ChildOf, playerEntity))
+
             blink.AddCharacter.FireAll(player, character)
         end
     end

@@ -13,6 +13,7 @@ local components: {
     Cooldown: Entity,
     Attack: Entity,
     Walk: Entity,
+    Animation: Entity,
 } = {
     Character = world:component(),
     Player = world:component(),
@@ -21,6 +22,7 @@ local components: {
     Cooldown = world:component(),
     Attack = world:component(),
     Walk = world:component(),
+    Animation = world:component(),
 }
 
 return components

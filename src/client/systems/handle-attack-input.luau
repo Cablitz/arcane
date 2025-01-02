@@ -12,6 +12,8 @@ local Client = cts.Client
 local Attack = cts.Attack
 local Cooldown = cts.Cooldown
 local Active = cts.Active
+local Animation = cts.Animation
+
 local clientState = require("@common/constants/client-state")
 type ClientState = clientState.ClientState
 
@@ -25,6 +27,10 @@ local function charactersAttack(state: ClientState)
             local attackEntity = world:entity()
             world:add(attackEntity, Attack)
             world:set(attackEntity, pair(ChildOf, characterEntity))
+
+            -- Initilization of attack by spawning parts, animations, components, etc
+            local animation = world:get(characterEntity, pair(Animation, Attack))
+            animation:Play()
 
             world:add(characterEntity, pair(Active, Attack))
             world:set(characterEntity, pair(Cooldown, Attack), 3)
