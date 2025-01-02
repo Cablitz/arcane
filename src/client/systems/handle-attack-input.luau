@@ -33,8 +33,7 @@ local function charactersAttack(state: ClientState)
             animation:Play()
 
             world:add(characterEntity, pair(Active, Attack))
-            world:set(characterEntity, pair(Cooldown, Attack), 3)
-            print("attack")
+            world:set(characterEntity, pair(Cooldown, Attack), 0.5)
         end
     end
 end

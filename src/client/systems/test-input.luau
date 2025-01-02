@@ -8,15 +8,15 @@ type ClientState = clientState.ClientState
 
 local function testInput(state: ClientState)
     if state.input.actions:justPressed("walk") then
-        print("Walk", matter.useDeltaTime())
+        -- print("Walk", matter.useDeltaTime())
     end
 
     if state.input.actions:justReleased("walk") then
-        print("Walk released")
+        -- print("Walk released")
     end
 
     if state.input.actions:justPressed("jump") then
-        print("Jump")
+        -- print("Jump")
     end
 end
 

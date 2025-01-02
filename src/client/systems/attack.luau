@@ -15,12 +15,17 @@ local pair = jecs.pair
 local function attack()
     for attackEntity in world:query(Attack):iter() do
         local characterEntity = world:parent(attackEntity)
-        local animation = world:get(characterEntity, pair(Animation, Attack))
+        local animation = world:get(characterEntity, pair(Animation, Attack)) :: AnimationTrack
 
-        --[[
-        world:remove(characterEntity, pair(Active, Attack))
-        world:delete(attackEntity)
-        ]]--
+        for _ in matter.useEvent(animation, animation:GetMarkerReachedSignal("hitbox")) do
+            print("hitbox")
+        end
+
+        for _ in matter.useEvent(animation, animation.Ended) do
+            print("ended")
+            world:remove(characterEntity, pair(Active, Attack))
+            world:delete(attackEntity)
+        end
     end
 end
 

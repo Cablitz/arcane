@@ -30,13 +30,13 @@ local function addCharacters()
         world:set(characterEntity, Character, character)
         world:set(characterEntity, pair(ChildOf, playerEntity))
 
-        -- Setup animations
-        local humanoid = character:WaitForChild("Humanoid") :: Humanoid
-        local animator = humanoid:WaitForChild("Animator") :: Animator
-        world:set(characterEntity, pair(Animation, Attack), loadAnimation(animator, 105235360671157))
-
         if player == Players.LocalPlayer then
             world:add(characterEntity, Client)
+
+            -- Setup animations
+            local humanoid = character:WaitForChild("Humanoid") :: Humanoid
+            local animator = humanoid:WaitForChild("Animator") :: Animator
+            world:set(characterEntity, pair(Animation, Attack), loadAnimation(animator, 105235360671157))
         end
     end
 end
