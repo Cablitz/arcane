@@ -16,3 +16,16 @@ event AddCharacter {
     call: SingleSync,
     data: (Instance(Player), Instance(Model))
 }
+
+event UseAttackAbility {
+    from: Client,
+    type: Reliable,
+    call: SingleSync,
+}
+
+event AttackCharacter {
+    from: Client,
+    type: Reliable,
+    call: SingleSync,
+    data: Instance(Model)
+}

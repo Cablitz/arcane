@@ -1,3 +1,5 @@
+local blink = require("@blink/client")
+
 local std = require("@common/std")
 local world = std.world
 
@@ -24,7 +26,7 @@ local function hitbox()
         local hitCharacter = hitboxUtils.findClosestCharacter(character, hitCharacters)
 
         if hitCharacter then
-            print("hit enemy")
+            blink.AttackCharacter.Fire(hitCharacter)
         end
 
         world:remove(abilityEntity, Hitbox)

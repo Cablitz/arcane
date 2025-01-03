@@ -10,21 +10,28 @@ local components: {
     Player: Entity<Player>,
     Client: Entity,
     Active: Entity,
+    Duration: Entity<number>,
     Cooldown: Entity,
     Attack: Entity,
     Hitbox: Entity,
     Walk: Entity,
     Animation: Entity,
+    Hit: Entity<{
+        attacker: Entity,
+        damage: number,
+    }>,
 } = {
     Character = world:component(),
     Player = world:component(),
     Client = world:component(),
     Active = world:component(),
+    Duration = world:component(),
     Cooldown = world:component(),
     Attack = world:component(),
     Hitbox = world:component(),
     Walk = world:component(),
     Animation = world:component(),
+    Hit = world:component(),
 }
 
 return components
