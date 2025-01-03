@@ -30,11 +30,11 @@ local function attack()
 
     -- Handle attack hits from clients
     for _, attackerPlayer, targetCharacter in blink.AttackCharacter.Iter() do
-        local attackerCharacter = attackerPlayer.Character
-        local attackerEntity = ref(attackerCharacter)
+        local attackerEntity = ref(attackerPlayer.Character)
         local targetEntity = ref(targetCharacter)
 
         if world:has(attackerEntity, pair(Active, Attack)) then
+            world:set(targetEntity, Hit, { attacker = attackerEntity, damage = 10 })
             print("Server received hit:", attackerEntity, "->", targetEntity)            
         end
     end

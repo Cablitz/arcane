@@ -13,7 +13,7 @@
             "network": {
                 "$path": ".blink/client.luau"
             },
-            "Packages": {
+            "packages": {
                 "$className": "Folder",
                 "$path": "./packages"
             }
@@ -25,7 +25,7 @@
             "network": {
                 "$path": ".blink/server.luau"
             },
-            "ServerPackages": {
+            "server-packages": {
                 "$className": "Folder",
                 "$path": "./serverPackages"
             }
