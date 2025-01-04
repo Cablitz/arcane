@@ -40,6 +40,8 @@ local function attack()
     end
 end
 
+-- local rig = workspace.Rig <--- Rojo Syncback works with proper Intellisense!!!!!!
+
 return {
     system = attack,
 } 

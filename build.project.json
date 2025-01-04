@@ -4,6 +4,7 @@
     "tree": {
         "$className": "DataModel",
         "ReplicatedStorage": {
+            "$path": "./assets/ReplicatedStorage",
             "client": {
                 "$path": "dist/client"
             },
@@ -27,7 +28,7 @@
             },
             "server-packages": {
                 "$className": "Folder",
-                "$path": "./serverPackages"
+                "$path": "./server-packages"
             }
         },
         "StarterPlayer": {
@@ -35,6 +36,21 @@
             "$properties": {
                 "GameSettingsAvatar": "R6"
             }
+        },
+        "Workspace": {
+            "$path": "./assets/Workspace"
         }
+    },
+    "syncbackRules": {
+        "ignoreTrees": [
+            "ReplicatedStorage/client",
+            "ReplicatedStorage/common",
+            "ReplicatedStorage/packages",
+            "ReplicatedStorage/network",
+            "ServerScriptService/network",
+            "ServerScriptService/server",
+            "ServerScriptService/server-packages"
+        ],
+        "syncUnscriptable": true
     }
 }

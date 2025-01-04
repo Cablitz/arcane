@@ -12,7 +12,7 @@
                     "@common": "src/common",
                     "@blink": ".blink",
                     "@packages": "./packages",
-                    "@serverpackages": "./serverPackages"
+                    "@server-packages": "./server-packages"
                 }
             },
             "target": {
