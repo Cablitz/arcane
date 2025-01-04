@@ -14,7 +14,9 @@ local cts = require("@common/cts")
 local Character = cts.Character
 local Client = cts.Client
 local Animation = cts.Animation
+local Animator = cts.Animator
 local Attack = cts.Attack
+local Humanoid = cts.Humanoid
 
 local function loadAnimation(animator: Animator, animationId: number)
     local animation = Instance.new("Animation")
@@ -28,15 +30,12 @@ local function addCharacters()
         local playerEntity = ref(player)
         local characterEntity = ref(character)
         world:set(characterEntity, Character, character)
+        world:set(characterEntity, Humanoid, character:WaitForChild("Humanoid"))
+        world:set(characterEntity, Animator, character.Humanoid:WaitForChild("Animator"))
         world:set(characterEntity, pair(ChildOf, playerEntity))
 
         if player == Players.LocalPlayer then
             world:add(characterEntity, Client)
-
-            -- Setup animations
-            local humanoid = character:WaitForChild("Humanoid") :: Humanoid
-            local animator = humanoid:WaitForChild("Animator") :: Animator
-            world:set(characterEntity, pair(Animation, Attack), loadAnimation(animator, 105235360671157))
         end
     end
 end

@@ -35,12 +35,9 @@ local function attack()
 
         if world:has(attackerEntity, pair(Active, Attack)) then
             world:set(targetEntity, Hit, { attacker = attackerEntity, damage = 10 })
-            print("Server received hit:", attackerEntity, "->", targetEntity)            
         end
     end
 end
-
--- local rig = workspace.Rig <--- Rojo Syncback works with proper Intellisense!!!!!!
 
 return {
     system = attack,

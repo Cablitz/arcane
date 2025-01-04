@@ -8,6 +8,8 @@ type Entity<T = nil> = jecs.Entity<T>
 local components: {
     Character: Entity<Model>,
     Player: Entity<Player>,
+    Humanoid: Entity<Humanoid>,
+    Animator: Entity<Animator>,
     Client: Entity,
     Active: Entity,
     Duration: Entity<number>,
@@ -20,9 +22,13 @@ local components: {
         attacker: Entity,
         damage: number,
     }>,
+    Damage: Entity<number>,
+    Health: Entity<number>,
 } = {
     Character = world:component(),
     Player = world:component(),
+    Humanoid = world:component(),
+    Animator = world:component(),
     Client = world:component(),
     Active = world:component(),
     Duration = world:component(),
@@ -32,6 +38,8 @@ local components: {
     Walk = world:component(),
     Animation = world:component(),
     Hit = world:component(),
+    Damage = world:component(),
+    Health = world:component(),
 }
 
 return components
