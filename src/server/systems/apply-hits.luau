@@ -1,3 +1,5 @@
+local blink = require("@blink/server")
+
 local std = require("@common/std")
 local world = std.world
 
@@ -15,6 +17,8 @@ local function applyHit()
 
         local direction = (attackerRoot.Position - targetRoot.Position).Unit * Vector3.new(1, 0, 1)
         targetRoot.CFrame = CFrame.lookAt(targetRoot.Position, targetRoot.Position + direction, targetRoot.CFrame.UpVector)
+
+        blink.CharacterHit.FireAll(targetCharacter)
 
         world:set(targetEntity, Damage, hit.damage)
         world:remove(targetEntity, Hit)

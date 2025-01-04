@@ -1,15 +1,18 @@
 local jecs = require("@packages/jecs")
 
+local OnRemove = jecs.OnRemove
+
 local std = require("@common/std")
 local world = std.world
 
 type Entity<T = nil> = jecs.Entity<T>
 
-local components: {
+local cts: {
     Character: Entity<Model>,
     Player: Entity<Player>,
     Humanoid: Entity<Humanoid>,
     Animator: Entity<Animator>,
+    Renderable: Entity<Model>,
     Client: Entity,
     Active: Entity,
     Duration: Entity<number>,
@@ -24,11 +27,15 @@ local components: {
     }>,
     Damage: Entity<number>,
     Health: Entity<number>,
+    Particle: Entity,
+    Lifetime: Entity<number>,
+    Highlight: Entity,
 } = {
     Character = world:component(),
     Player = world:component(),
     Humanoid = world:component(),
     Animator = world:component(),
+    Renderable = world:component(),
     Client = world:component(),
     Active = world:component(),
     Duration = world:component(),
@@ -40,6 +47,14 @@ local components: {
     Hit = world:component(),
     Damage = world:component(),
     Health = world:component(),
+    Particle = world:component(),
+    Lifetime = world:component(),
+    Highlight = world:component(),
 }
 
-return components
+world:set(cts.Renderable, OnRemove, function(entity)
+    local renderable = world:get(entity, cts.Renderable)
+    renderable:Destroy()
+end)
+
+return cts

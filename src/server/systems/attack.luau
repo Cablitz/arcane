@@ -34,7 +34,7 @@ local function attack()
         local targetEntity = ref(targetCharacter)
 
         if world:has(attackerEntity, pair(Active, Attack)) then
-            world:set(targetEntity, Hit, { attacker = attackerEntity, damage = 10 })
+            world:set(targetEntity, Hit, { attacker = attackerEntity, damage = 15 })
         end
     end
 end

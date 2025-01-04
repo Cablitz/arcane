@@ -27,7 +27,7 @@ local function addCharacters()
     end
 end
 
-local rig = workspace.Rig
+local rig = workspace.rig
 local rigEntity = ref(rig)
 world:set(rigEntity, Character, rig)
 world:set(rigEntity, Humanoid, rig:WaitForChild("Humanoid"))
