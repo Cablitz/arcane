@@ -5,9 +5,8 @@ local blink = require("@blink/server")
 local pair = jecs.pair
 local ChildOf = jecs.ChildOf
 
-local std = require("@common/std")
-local world = std.world
-local ref = std.ref
+local world = require("@std/world")
+local ref = require("@std/ref")
 
 local cts = require("@common/cts")
 local Player = cts.Player

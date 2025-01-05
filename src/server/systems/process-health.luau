@@ -1,5 +1,4 @@
-local std = require("@common/std")
-local world = std.world
+local world = require("@std/world")
 
 local cts = require("@common/cts")
 local Health = cts.Health

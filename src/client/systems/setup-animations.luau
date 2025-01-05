@@ -2,8 +2,7 @@ local jecs = require("@packages/jecs")
 
 local pair = jecs.pair
 
-local std = require("@common/std")
-local world = std.world
+local world = require("@std/world")
 
 local cts = require("@common/cts")
 local Animation = cts.Animation
@@ -19,7 +18,7 @@ local function loadAnimation(animator: Animator, animationId: number)
 end
 
 local function setupAnimations()
-    for characterEntity, animator in world:query(Animator):with(Client):without(pair(Animation, Attack)) do
+    for characterEntity, animator in world:query(Animator):with(Client):without(pair(Animation, Attack)):iter() do
         world:set(characterEntity, pair(Animation, Attack), loadAnimation(animator, 105235360671157))
     end
 end

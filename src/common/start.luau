@@ -8,8 +8,7 @@ local jabby = require("@packages/jabby")
 local PlanckJabby = require("@packages/planck-jabby")
 local matterHooks = require("@packages/matter-hooks")
 
-local std = require("@common/std")
-local world = std.world
+local world = require("@std/world")
 
 local jabbyPlugin = PlanckJabby.new()
 local hooksPlugin = matterHooks.Plugin.new(ReplicatedStorage.packages._Index["matter-ecs_matter@0.8.5"])

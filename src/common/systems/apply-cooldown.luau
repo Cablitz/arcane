@@ -4,14 +4,13 @@ local matter = require("@packages/matter")
 local pair = jecs.pair
 local __ = jecs.Wildcard
 
-local std = require("@common/std")
-local world = std.world
+local world = require("@std/world")
 
 local cts = require("@common/cts")
 local Cooldown = cts.Cooldown
 
 local function applyCooldown()
-    for characterEntity in world:query(pair(Cooldown, __)) do
+    for characterEntity in world:query(pair(Cooldown, __)):iter() do
         local index = 0
 
         while true do

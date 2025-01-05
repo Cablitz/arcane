@@ -1,7 +1,6 @@
 local matter = require("@packages/matter")
 local planck = require("@packages/planck")
 
-local std = require("@common/std")
 local clientState = require("@common/constants/client-state")
 
 type ClientState = clientState.ClientState

@@ -2,10 +2,9 @@ local Players = game:GetService("Players")
 
 local blink = require("@blink/server")
 
-local std = require("@common/std")
-local collect = std.collect
-local ref = std.ref
-local world = std.world
+local collect = require("@std/collect")
+local ref = require("@std/ref")
+local world = require("@std/world")
 
 local cts = require("@common/cts")
 local Player = cts.Player

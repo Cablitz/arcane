@@ -1,7 +1,6 @@
 local blink = require("@blink/server")
 
-local std = require("@common/std")
-local world = std.world
+local world = require("@std/world")
 
 local cts = require("@common/cts")
 local Hit = cts.Hit

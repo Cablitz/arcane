@@ -2,8 +2,7 @@ local jecs = require("@packages/jecs")
 
 local OnRemove = jecs.OnRemove
 
-local std = require("@common/std")
-local world = std.world
+local world = require("@std/world")
 
 type Entity<T = nil> = jecs.Entity<T>
 
