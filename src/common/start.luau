@@ -29,8 +29,10 @@ local function start(containers: {Instance}, state)
     jabby.public.updated = true
 
     for _, container in containers do
-        for _, module: ModuleScript in container:GetChildren() do
-            scheduler:addSystem(require(module))
+        for _, module in container:GetDescendants() do
+            if module:IsA("ModuleScript") then
+                scheduler:addSystem(require(module))
+            end
         end
     end
 
