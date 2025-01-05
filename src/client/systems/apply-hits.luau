@@ -9,11 +9,13 @@ local ChildOf = jecs.ChildOf
 local ref = require("@std/ref")
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Particle = cts.Particle
-local Lifetime = cts.Lifetime
-local Renderable = cts.Renderable
-local Highlight = cts.Highlight
+local baseCts = require("@cts/base")
+local Renderable = baseCts.Renderable
+local Lifetime = baseCts.Lifetime
+
+local effectCts = require("@cts/effect")
+local Particle = effectCts.Particle
+local Highlight = effectCts.Highlight
 
 local particleUtils = require("@client/utils/particle-utils")
 

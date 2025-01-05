@@ -4,11 +4,15 @@ local pair = jecs.pair
 
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Animation = cts.Animation
-local Animator = cts.Animator
-local Attack = cts.Attack
-local Client = cts.Client
+local animationCts = require("@cts/animation")
+local Animation = animationCts.Animation
+
+local characterCts = require("@cts/character")
+local Animator = characterCts.Animator
+local Client = characterCts.Client
+
+local abilityCts = require("@cts/ability")
+local Attack = abilityCts.Attack
 
 local function loadAnimation(animator: Animator, animationId: number)
     local animation = Instance.new("Animation")

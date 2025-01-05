@@ -5,12 +5,13 @@ local blink = require("@blink/server")
 local world = require("@std/world")
 local ref = require("@std/ref")
 
-local cts = require("@common/cts")
-local Attack = cts.Attack
-local Duration = cts.Duration
-local Active = cts.Active
-local Character = cts.Character
-local Hit = cts.Hit
+local abilityCts = require("@cts/ability")
+local Attack = abilityCts.Attack
+local Duration = abilityCts.Duration
+local Active = abilityCts.Active
+
+local combatCts = require("@cts/combat")
+local Hit = combatCts.Hit
 
 local pair = jecs.pair
 

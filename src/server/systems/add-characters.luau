@@ -8,10 +8,12 @@ local ChildOf = jecs.ChildOf
 local world = require("@std/world")
 local ref = require("@std/ref")
 
-local cts = require("@common/cts")
-local Player = cts.Player
-local Character = cts.Character
-local Humanoid = cts.Humanoid
+local playerCts = require("@cts/player")
+local Player = playerCts.Player
+
+local characterCts = require("@cts/character")
+local Character = characterCts.Character
+local Humanoid = characterCts.Humanoid
 
 local function addCharacters()
     for playerEntity, player in world:query(Player):iter() do

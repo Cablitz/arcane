@@ -6,8 +6,8 @@ local collect = require("@std/collect")
 local ref = require("@std/ref")
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Player = cts.Player
+local playerCts = require("@cts/player")
+local Player = playerCts.Player
 
 local playersAdded = collect(Players.PlayerAdded)
 

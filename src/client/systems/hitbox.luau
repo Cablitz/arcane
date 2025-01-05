@@ -2,9 +2,11 @@ local blink = require("@blink/client")
 
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Hitbox = cts.Hitbox
-local Character = cts.Character
+local combatCts = require("@cts/combat")
+local Hitbox = combatCts.Hitbox
+
+local characterCts = require("@cts/character")
+local Character = characterCts.Character
 
 local hitboxUtils = require("@client/utils/hitbox-utils")
 

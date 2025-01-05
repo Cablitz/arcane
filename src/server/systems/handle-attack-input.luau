@@ -7,11 +7,11 @@ local ChildOf = jecs.ChildOf
 local world = require("@std/world")
 local ref = require("@std/ref")
 
-local cts = require("@common/cts")
-local Attack = cts.Attack
-local Cooldown = cts.Cooldown
-local Active = cts.Active
-local Duration = cts.Duration
+local abilityCts = require("@cts/ability")
+local Attack = abilityCts.Attack
+local Cooldown = abilityCts.Cooldown
+local Active = abilityCts.Active
+local Duration = abilityCts.Duration
 
 local attackConfig = {
     cooldown = 0.5,

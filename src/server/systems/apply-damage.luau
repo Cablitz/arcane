@@ -1,8 +1,8 @@
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Damage = cts.Damage
-local Health = cts.Health
+local combatCts = require("@cts/combat")
+local Damage = combatCts.Damage
+local Health = combatCts.Health
 
 local function applyDamage()
     for characterEntity, health, damage in world:query(Health, Damage):iter() do

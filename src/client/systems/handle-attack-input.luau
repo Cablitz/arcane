@@ -6,14 +6,18 @@ local ChildOf = jecs.ChildOf
 
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Character = cts.Character
-local Client = cts.Client
-local Attack = cts.Attack
-local Cooldown = cts.Cooldown
-local Active = cts.Active
-local Animation = cts.Animation
-local Duration = cts.Duration
+local characterCts = require("@cts/character")
+local Character = characterCts.Character
+local Client = characterCts.Client
+
+local abilityCts = require("@cts/ability")
+local Attack = abilityCts.Attack
+local Cooldown = abilityCts.Cooldown
+local Active = abilityCts.Active
+local Duration = abilityCts.Duration
+
+local animationCts = require("@cts/animation")
+local Animation = animationCts.Animation
 
 local clientState = require("@common/constants/client-state")
 type ClientState = clientState.ClientState

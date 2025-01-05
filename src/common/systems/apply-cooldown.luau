@@ -6,8 +6,8 @@ local __ = jecs.Wildcard
 
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Cooldown = cts.Cooldown
+local abilityCts = require("@cts/ability")
+local Cooldown = abilityCts.Cooldown
 
 local function applyCooldown()
     for characterEntity in world:query(pair(Cooldown, __)):iter() do

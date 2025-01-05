@@ -9,20 +9,11 @@ local ChildOf = jecs.ChildOf
 local ref = require("@std/ref")
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Character = cts.Character
-local Client = cts.Client
-local Animation = cts.Animation
-local Animator = cts.Animator
-local Attack = cts.Attack
-local Humanoid = cts.Humanoid
-
-local function loadAnimation(animator: Animator, animationId: number)
-    local animation = Instance.new("Animation")
-    animation.AnimationId = "rbxassetid://" .. animationId
-
-    return animator:LoadAnimation(animation)
-end
+local characterCts = require("@cts/character")
+local Character = characterCts.Character
+local Animator = characterCts.Animator
+local Humanoid = characterCts.Humanoid
+local Client = characterCts.Client
 
 local function addCharacters()
     for _, player, character in blink.AddCharacter.Iter() do

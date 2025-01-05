@@ -1,8 +1,10 @@
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Health = cts.Health
-local Humanoid = cts.Humanoid
+local characterCts = require("@cts/character")
+local Humanoid = characterCts.Humanoid
+
+local combatCts = require("@cts/combat")
+local Health = combatCts.Health
 
 local function processHealth()
     for characterEntity, humanoid in world:query(Humanoid):without(Health):iter() do

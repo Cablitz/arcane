@@ -1,11 +1,13 @@
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Renderable = cts.Renderable
-local Highlight = cts.Highlight
-local Lifetime = cts.Lifetime
+local baseCts = require("@cts/base")
+local Renderable = baseCts.Renderable
+local Lifetime = baseCts.Lifetime
 
-function fadeHighlights()
+local effectCts = require("@cts/effect")
+local Highlight = effectCts.Highlight
+
+local function fadeHighlights()
     for highlightEntity, lifetime, renderable in world:query(Lifetime, Renderable):with(Highlight):iter() do
         -- Calculate fade based on lifetime
         -- Starting at 0.6, ending at 1.0, over 0.25 seconds

@@ -2,8 +2,8 @@ local matter = require("@packages/matter")
 
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Lifetime = cts.Lifetime
+local baseCts = require("@cts/base")
+local Lifetime = baseCts.Lifetime
 
 local function applyLifetime()
     for id, lifetime in world:query(Lifetime):iter() do

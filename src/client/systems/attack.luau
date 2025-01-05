@@ -3,12 +3,16 @@ local jecs = require("@packages/jecs")
 
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Attack = cts.Attack
-local Duration = cts.Duration
-local Active = cts.Active
-local Animation = cts.Animation
-local Hitbox = cts.Hitbox
+local abilityCts = require("@cts/ability")
+local Attack = abilityCts.Attack
+local Duration = abilityCts.Duration
+local Active = abilityCts.Active
+
+local animationCts = require("@cts/animation")
+local Animation = animationCts.Animation
+
+local combatCts = require("@cts/combat")
+local Hitbox = combatCts.Hitbox
 
 local pair = jecs.pair
 

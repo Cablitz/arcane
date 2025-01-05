@@ -2,10 +2,12 @@ local blink = require("@blink/server")
 
 local world = require("@std/world")
 
-local cts = require("@common/cts")
-local Hit = cts.Hit
-local Character = cts.Character
-local Damage = cts.Damage
+local combatCts = require("@cts/combat")
+local Hit = combatCts.Hit
+local Damage = combatCts.Damage
+
+local characterCts = require("@cts/character")
+local Character = characterCts.Character
 
 local function applyHit()
     for targetEntity, targetCharacter, hit in world:query(Character, Hit):iter() do
