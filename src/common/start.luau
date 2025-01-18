@@ -18,15 +18,13 @@ local function start(containers: {Instance}, state)
         :addPlugin(jabbyPlugin)
         :addPlugin(hooksPlugin)
 
-    table.insert(jabby.public, {
-        class_name = "World",
-        name = "MyWorld",
-        world = world,
-        debug = "Main",
-        entities = {},
+    jabby.register({
+        applet = jabby.applets.world,
+        name = "world",
+        configuration = {
+            world = world,
+        }
     })
-
-    jabby.public.updated = true
 
     for _, container in containers do
         for _, module in container:GetDescendants() do
@@ -42,11 +40,11 @@ local function start(containers: {Instance}, state)
 
     if RunService:IsClient() then
         local player = Players.LocalPlayer
-        local playergui = player:WaitForChild("PlayerGui")
+        local playerGui = player:WaitForChild("PlayerGui")
         local client = jabby.obtain_client()
         UserInputService.InputBegan:Connect(function(input)
             if input.KeyCode == Enum.KeyCode.F4 then
-                local home = playergui:FindFirstChild("Home")
+                local home = playerGui:FindFirstChild("Home")
                 if home then
                     home:Destroy()
                 end
