@@ -18,13 +18,15 @@ local function start(containers: {Instance}, state)
         :addPlugin(jabbyPlugin)
         :addPlugin(hooksPlugin)
 
-    jabby.register({
-        applet = jabby.applets.world,
-        name = "world",
-        configuration = {
-            world = world,
-        }
+    table.insert(jabby.public, {
+        class_name = "World",
+        name = "MyWorld",
+        world = world,
+        debug = "Main",
+        entities = {},
     })
+
+    jabby.public.updated = true
 
     for _, container in containers do
         for _, module in container:GetDescendants() do
