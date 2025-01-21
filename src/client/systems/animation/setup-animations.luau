@@ -23,7 +23,7 @@ end
 
 local function setupAnimations()
     for characterEntity, animator in world:query(Animator):with(Client):without(pair(Animation, Attack)):iter() do
-        world:set(characterEntity, pair(Animation, Attack), loadAnimation(animator, 105235360671157))
+        world:set(characterEntity, pair(Animation, Attack), loadAnimation(animator, 77519440817755))
     end
 end
 

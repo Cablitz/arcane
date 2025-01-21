@@ -22,7 +22,7 @@ local function canAttack(characterEntity)
     return not world:has(characterEntity, pair(Cooldown, Attack)) and not world:has(characterEntity, pair(Active, Attack))
 end
 
-local function handleAttackInput()
+local function attackInput()
     for _, player in blink.UseAttackAbility.Iter() do
         local characterEntity = ref(player.Character)
 
@@ -42,5 +42,5 @@ local function handleAttackInput()
 end
 
 return {
-    system = handleAttackInput,
+    system = attackInput,
 } 

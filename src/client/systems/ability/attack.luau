@@ -7,12 +7,16 @@ local abilityCts = require("@cts/ability")
 local Attack = abilityCts.Attack
 local Duration = abilityCts.Duration
 local Active = abilityCts.Active
+local Combo = abilityCts.Combo
 
 local animationCts = require("@cts/animation")
 local Animation = animationCts.Animation
 
 local combatCts = require("@cts/combat")
 local Hitbox = combatCts.Hitbox
+
+local baseCts = require("@cts/base")
+local Lifetime = baseCts.Lifetime
 
 local pair = jecs.pair
 
@@ -21,7 +25,7 @@ local function attack()
         local characterEntity = world:parent(attackEntity)
         local animation = world:get(characterEntity, pair(Animation, Attack)) :: AnimationTrack
 
-        for _ in matter.useEvent(animation, animation:GetMarkerReachedSignal("hitbox")) do
+        for _ in matter.useEvent(animation, animation:GetMarkerReachedSignal("hitreg")) do
             world:add(attackEntity, Hitbox)
         end
 
@@ -29,6 +33,9 @@ local function attack()
         if remainingDuration <= 0 then
             world:remove(characterEntity, pair(Active, Attack))
             world:delete(attackEntity)
+
+            local comboEntity = world:target(characterEntity, Combo)
+            world:set(comboEntity, Lifetime, 0.25)
         else
             world:set(attackEntity, Duration, remainingDuration)
         end
