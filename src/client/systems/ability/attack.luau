@@ -35,7 +35,11 @@ local function attack()
             world:delete(attackEntity)
 
             local comboEntity = world:target(characterEntity, Combo)
-            world:set(comboEntity, Lifetime, 0.25)
+            if world:get(comboEntity, Combo) < 4 then
+                world:set(comboEntity, Lifetime, 0.25)
+            else
+                world:delete(comboEntity)
+            end
         else
             world:set(attackEntity, Duration, remainingDuration)
         end

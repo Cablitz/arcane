@@ -15,6 +15,7 @@ local Lifetime = baseCts.Lifetime
 
 local abilityCts = require("@cts/ability")
 local Attack = abilityCts.Attack
+local Attacks = abilityCts.Attacks
 local Cooldown = abilityCts.Cooldown
 local Active = abilityCts.Active
 local Duration = abilityCts.Duration
@@ -40,18 +41,11 @@ local function attackInput(state: ClientState)
     for characterEntity, character in world:query(Character):with(Client):iter() do
         if canAttack(characterEntity) and state.input.actions:justPressed("attack") then
             local attackEntity = world:entity()
-            local attackAnimation = world:get(characterEntity, pair(Animation, Attack)) :: AnimationTrack
             
             world:add(attackEntity, Attack)
             world:set(attackEntity, pair(ChildOf, characterEntity))
 
             -- Initilization of attack by spawning parts, animations, components, etc
-            attackAnimation:Play()
-
-            world:set(attackEntity, Duration, attackConfig.duration)
-            world:add(characterEntity, pair(Active, Attack))
-            world:set(characterEntity, pair(Cooldown, Attack), attackConfig.cooldown)
-
             local comboEntity = world:target(characterEntity, Combo)
             if comboEntity then
                 local currentCombo = world:get(comboEntity, Combo)
@@ -60,9 +54,18 @@ local function attackInput(state: ClientState)
             else
                 comboEntity = world:entity()
                 world:set(comboEntity, Combo, 1)
-                world:set(characterEntity, pair(Combo, comboEntity))
+                world:add(characterEntity, pair(Combo, comboEntity))
             end
             print("Current combo number ", world:get(comboEntity, Combo))
+            
+            local combo = world:get(comboEntity, Combo)
+            local attackAnimation = (world:get(characterEntity, pair(Animation, Attacks)) :: {AnimationTrack})[combo]
+            attackAnimation:Play()
+
+            world:set(characterEntity, pair(Animation, Attack), attackAnimation)
+            world:set(attackEntity, Duration, attackConfig.duration)
+            world:add(characterEntity, pair(Active, Attack))
+            world:set(characterEntity, pair(Cooldown, Attack), attackConfig.cooldown)
 
             blink.UseAttackAbility.Fire()
         end
