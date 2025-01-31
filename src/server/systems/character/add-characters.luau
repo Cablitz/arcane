@@ -14,6 +14,7 @@ local Player = playerCts.Player
 local characterCts = require("@cts/character")
 local Character = characterCts.Character
 local Humanoid = characterCts.Humanoid
+local Human = characterCts.Human
 local CharacterRef = characterCts.CharacterRef
 
 local function addCharacters()
@@ -23,6 +24,7 @@ local function addCharacters()
             world:set(characterEntity, Character, character)
             world:set(characterEntity, Humanoid, character:WaitForChild("Humanoid"))
             world:set(characterEntity, pair(ChildOf, playerEntity))
+            world:add(characterEntity, Human)
             world:set(playerEntity, CharacterRef, characterEntity)
 
             blink.AddCharacter.FireAll(player, character)

@@ -26,6 +26,7 @@ local function attack()
         local animation = world:get(characterEntity, pair(Animation, Attack)) :: AnimationTrack
 
         for _ in matter.useEvent(animation, animation:GetMarkerReachedSignal("hitreg")) do
+            print(duration)
             world:add(attackEntity, Hitbox)
         end
 

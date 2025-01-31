@@ -14,8 +14,8 @@ local Active = abilityCts.Active
 local Duration = abilityCts.Duration
 
 local attackConfig = {
-    cooldown = 0.5,
-    duration = 0.75,
+    cooldown = 0.25,
+    duration = 0.5,
 }
 
 local function canAttack(characterEntity)

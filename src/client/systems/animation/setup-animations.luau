@@ -1,4 +1,5 @@
 local jecs = require("@packages/jecs")
+local animationUtils = require("@common/utils/animation-utils")
 
 local pair = jecs.pair
 
@@ -15,20 +16,13 @@ local abilityCts = require("@cts/ability")
 local Attacks = abilityCts.Attacks
 local Attack = abilityCts.Attack
 
-local function loadAnimation(animator: Animator, animationId: number)
-    local animation = Instance.new("Animation")
-    animation.AnimationId = "rbxassetid://" .. animationId
-
-    return animator:LoadAnimation(animation)
-end
-
 local function setupAnimations()
     for characterEntity, animator in world:query(Animator):with(Client):without(pair(Animation, Attack)):iter() do
         world:set(characterEntity, pair(Animation, Attacks), {
-            [1] = loadAnimation(animator, 105235360671157),
-            [2] = loadAnimation(animator, 119145086727185),
-            [3] = loadAnimation(animator, 71041733422726),
-            [4] = loadAnimation(animator, 91528168811560),
+            [1] = animationUtils.loadAnimation(animator, 105235360671157),
+            [2] = animationUtils.loadAnimation(animator, 119145086727185),
+            [3] = animationUtils.loadAnimation(animator, 71041733422726),
+            [4] = animationUtils.loadAnimation(animator, 91528168811560),
         })
     end
 end

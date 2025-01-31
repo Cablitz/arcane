@@ -28,8 +28,8 @@ local clientState = require("@common/constants/client-state")
 type ClientState = clientState.ClientState
 
 local attackConfig = {
-    cooldown = 0.5,
-    duration = 0.75,
+    cooldown = 0.25,
+    duration = 0.5,
     comboLifetime = 1,
 }
 

@@ -10,12 +10,14 @@ local cts: {
     Animator: Entity<Animator>,
     Client: Entity,
     CharacterRef: Entity<number>,
+    Human: Entity,
 } = {
     Character = world:component(),
     Humanoid = world:component(),
     Animator = world:component(),
     Client = world:component(),
     CharacterRef = world:component(),
+    Human = world:entity(),
 }
 
 return cts
