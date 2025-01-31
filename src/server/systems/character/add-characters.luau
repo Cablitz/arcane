@@ -15,6 +15,7 @@ local characterCts = require("@cts/character")
 local Character = characterCts.Character
 local Humanoid = characterCts.Humanoid
 local Human = characterCts.Human
+local Animator = characterCts.Animator
 local CharacterRef = characterCts.CharacterRef
 
 local function addCharacters()
@@ -36,6 +37,7 @@ local rig = workspace.rig
 local rigEntity = ref(rig)
 world:set(rigEntity, Character, rig)
 world:set(rigEntity, Humanoid, rig:WaitForChild("Humanoid"))
+world:set(rigEntity, Animator, rig.Humanoid:WaitForChild("Animator"))
 
 return {
     system = addCharacters,

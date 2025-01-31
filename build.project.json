@@ -1,56 +1,61 @@
 {
-    "name": "chainsaw",
-    "emitLegacyScripts": false,
-    "tree": {
-        "$className": "DataModel",
-        "ReplicatedStorage": {
-            "$path": "./assets/ReplicatedStorage",
-            "client": {
-                "$path": "dist/client"
-            },
-            "common": {
-                "$path": "dist/common"
-            },
-            "network": {
-                "$path": ".blink/client.luau"
-            },
-            "packages": {
-                "$className": "Folder",
-                "$path": "./packages"
-            }
-        },
-        "ServerScriptService": {
-            "server": {
-                "$path": "dist/server"
-            },
-            "network": {
-                "$path": ".blink/server.luau"
-            },
-            "server-packages": {
-                "$className": "Folder",
-                "$path": "./server-packages"
-            }
-        },
-        "StarterPlayer": {
-            "$className": "StarterPlayer",
-            "$properties": {
-                "GameSettingsAvatar": "R6"
-            }
-        },
-        "Workspace": {
-            "$path": "./assets/Workspace"
-        }
+  "name": "chainsaw",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "client": {
+        "$path": "dist/client"
+      },
+      "common": {
+        "$path": "dist/common"
+      },
+      "network": {
+        "$path": ".blink/client.luau"
+      },
+      "packages": {
+        "$className": "Folder",
+        "$path": "./packages"
+      },
+      "$path": "./assets/ReplicatedStorage"
     },
-    "syncbackRules": {
-        "ignoreTrees": [
-            "ReplicatedStorage/client",
-            "ReplicatedStorage/common",
-            "ReplicatedStorage/packages",
-            "ReplicatedStorage/network",
-            "ServerScriptService/network",
-            "ServerScriptService/server",
-            "ServerScriptService/server-packages"
-        ],
-        "syncUnscriptable": true
+    "ServerScriptService": {
+      "network": {
+        "$path": ".blink/server.luau"
+      },
+      "server": {
+        "$path": "dist/server"
+      },
+      "server-packages": {
+        "$className": "Folder",
+        "$path": "./server-packages"
+      }
+    },
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "$properties": {
+        "GameSettingsAvatar": "R6"
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "FallHeightEnabled": {
+          "Bool": true
+        }
+      },
+      "$path": "./assets/Workspace"
     }
+  },
+  "emitLegacyScripts": false,
+  "syncbackRules": {
+    "ignoreTrees": [
+      "ReplicatedStorage/client",
+      "ReplicatedStorage/common",
+      "ReplicatedStorage/packages",
+      "ReplicatedStorage/network",
+      "ServerScriptService/network",
+      "ServerScriptService/server",
+      "ServerScriptService/server-packages"
+    ],
+    "syncUnscriptable": true
+  }
 }

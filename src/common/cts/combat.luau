@@ -8,11 +8,13 @@ local cts: {
     Damage: Entity<number>,
     Health: Entity<number>,
     Hit: Entity,
+    Hits: Entity,
     Hitbox: Entity,
 } = {
     Damage = world:component(),
     Health = world:component(),
     Hit = world:component(),
+    Hits = world:component(),
     Hitbox = world:component(),
 }
 
