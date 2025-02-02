@@ -8,12 +8,14 @@ local cts: {
     Character: Entity<Model>,
     Humanoid: Entity<Humanoid>,
     Animator: Entity<Animator>,
+    Ragdoll: Entity,
     Client: Entity,
     Human: Entity,
 } = {
     Character = world:component(),
     Humanoid = world:component(),
     Animator = world:component(),
+    Ragdoll = world:component(),
     Client = world:component(),
     Human = world:entity(),
 }

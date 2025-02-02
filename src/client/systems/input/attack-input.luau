@@ -56,7 +56,6 @@ local function attackInput(state: ClientState)
                 world:set(comboEntity, Combo, 1)
                 world:add(characterEntity, pair(Combo, comboEntity))
             end
-            print("Current combo number ", world:get(comboEntity, Combo))
             
             local combo = world:get(comboEntity, Combo)
             local attackAnimation = (world:get(characterEntity, pair(Animation, Attacks)) :: {AnimationTrack})[combo]

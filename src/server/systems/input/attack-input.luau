@@ -12,10 +12,15 @@ local Attack = abilityCts.Attack
 local Cooldown = abilityCts.Cooldown
 local Active = abilityCts.Active
 local Duration = abilityCts.Duration
+local Combo = abilityCts.Combo
+
+local baseCts = require("@cts/base")
+local Lifetime = baseCts.Lifetime
 
 local attackConfig = {
     cooldown = 0.25,
     duration = 0.5,
+    comboLifetime = 1,
 }
 
 local function canAttack(characterEntity)
@@ -33,6 +38,17 @@ local function attackInput()
 
             world:add(attackEntity, Attack)
             world:set(attackEntity, pair(ChildOf, characterEntity))
+
+            local comboEntity = world:target(characterEntity, Combo)
+            if comboEntity then
+                local currentCombo = world:get(comboEntity, Combo)
+                world:set(comboEntity, Combo, currentCombo + 1)
+                world:remove(comboEntity, Lifetime)
+            else
+                comboEntity = world:entity()
+                world:set(comboEntity, Combo, 1)
+                world:add(characterEntity, pair(Combo, comboEntity))
+            end
 
             world:set(attackEntity, Duration, adjustedDuration)
             world:add(characterEntity, pair(Active, Attack))

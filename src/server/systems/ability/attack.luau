@@ -2,6 +2,8 @@ local matter = require("@packages/matter")
 local jecs = require("@packages/jecs")
 local blink = require("@blink/server")
 
+local ChildOf = jecs.ChildOf
+
 local world = require("@std/world")
 local ref = require("@std/ref")
 
@@ -9,15 +11,19 @@ local abilityCts = require("@cts/ability")
 local Attack = abilityCts.Attack
 local Duration = abilityCts.Duration
 local Active = abilityCts.Active
+local Combo = abilityCts.Combo
 
 local playerCts = require("@cts/player")
 local CharacterRef = playerCts.CharacterRef
 
 local characterCts = require("@cts/character")
 local Character = characterCts.Character
-
 local combatCts = require("@cts/combat")
 local Hit = combatCts.Hit
+
+local baseCts = require("@cts/base")
+local Target = baseCts.Target
+local Lifetime = baseCts.Lifetime
 
 local pair = jecs.pair
 
@@ -29,6 +35,13 @@ local function attack()
         if remainingDuration <= 0 then
             world:remove(characterEntity, pair(Active, Attack))
             world:delete(attackEntity)
+
+            local comboEntity = world:target(characterEntity, Combo)
+            if world:get(comboEntity, Combo) < 4 then
+                world:set(comboEntity, Lifetime, 0.25)
+            else
+                world:delete(comboEntity)
+            end
         else
             world:set(attackEntity, Duration, remainingDuration)
         end
@@ -40,12 +53,15 @@ local function attack()
         local attackerCharacterRef = world:target(attackerPlayerRef, CharacterRef)
         local targetCharacterRef = ref(targetCharacter)
 
+        -- Guard clauses
         if not attackerCharacterRef then continue end
         if not world:has(targetCharacterRef, Character) then continue end
+        if not world:has(attackerCharacterRef, pair(Active, Attack)) then continue end
 
-        if world:has(attackerCharacterRef, pair(Active, Attack)) then
-            world:set(targetCharacterRef, Hit, { attacker = attackerCharacterRef, damage = 15 })
-        end
+        local hitEntity = world:entity()
+        world:add(hitEntity, pair(ChildOf, attackerCharacterRef))
+        world:add(hitEntity, pair(Target, targetCharacterRef))
+        world:set(hitEntity, Hit, 15)
     end
 end
 
