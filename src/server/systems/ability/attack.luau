@@ -10,8 +10,10 @@ local Attack = abilityCts.Attack
 local Duration = abilityCts.Duration
 local Active = abilityCts.Active
 
+local playerCts = require("@cts/player")
+local CharacterRef = playerCts.CharacterRef
+
 local characterCts = require("@cts/character")
-local CharacterRef = characterCts.CharacterRef
 local Character = characterCts.Character
 
 local combatCts = require("@cts/combat")
@@ -35,7 +37,7 @@ local function attack()
     -- Handle attack hits from clients
     for _, attackerPlayer, targetCharacter in blink.AttackCharacter.Iter() do
         local attackerPlayerRef = ref(attackerPlayer)
-        local attackerCharacterRef = world:get(attackerPlayerRef, CharacterRef)
+        local attackerCharacterRef = world:target(attackerPlayerRef, CharacterRef)
         local targetCharacterRef = ref(targetCharacter)
 
         if not attackerCharacterRef then continue end

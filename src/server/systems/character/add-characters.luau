@@ -10,13 +10,13 @@ local ref = require("@std/ref")
 
 local playerCts = require("@cts/player")
 local Player = playerCts.Player
+local CharacterRef = playerCts.CharacterRef
 
 local characterCts = require("@cts/character")
 local Character = characterCts.Character
 local Humanoid = characterCts.Humanoid
 local Human = characterCts.Human
 local Animator = characterCts.Animator
-local CharacterRef = characterCts.CharacterRef
 
 local function addCharacters()
     for playerEntity, player in world:query(Player):iter() do
@@ -26,7 +26,7 @@ local function addCharacters()
             world:set(characterEntity, Humanoid, character:WaitForChild("Humanoid"))
             world:set(characterEntity, pair(ChildOf, playerEntity))
             world:add(characterEntity, Human)
-            world:set(playerEntity, CharacterRef, characterEntity)
+            world:add(playerEntity, pair(CharacterRef, characterEntity))
 
             blink.AddCharacter.FireAll(player, character)
         end
