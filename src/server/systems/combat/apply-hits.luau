@@ -30,7 +30,7 @@ local function applyHit()
     for hitEntity, hit in world:query(Hit):iter() do
         local attackerRef = world:target(hitEntity, ChildOf)
         local targetRef = world:target(hitEntity, Target)
-        local comboEntity = world:target(attackerRef, Combo)
+        local comboRef = world:target(attackerRef, Combo)
         local targetCharacter = world:get(targetRef, Character)
 
         blink.CharacterHit.FireAll(targetCharacter)
@@ -45,8 +45,9 @@ local function applyHit()
         world:add(damageEntity, pair(Source, attackerRef))
         world:set(damageEntity, Damage, hit)
 
-        if world:get(comboEntity, Combo) == 4 then
+        if world:get(comboRef, Combo) == 4 then
             world:add(targetRef, Ragdoll)
+            world:set(targetRef, pair(Lifetime, Ragdoll), 3)
         end
 
         world:delete(hitEntity)

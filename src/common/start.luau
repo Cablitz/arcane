@@ -8,8 +8,6 @@ local jabby = require("@packages/jabby")
 local PlanckJabby = require("@packages/planck-jabby")
 local matterHooks = require("@packages/matter-hooks")
 
-local world = require("@std/world")
-
 local jabbyPlugin = PlanckJabby.new()
 local hooksPlugin = matterHooks.Plugin.new(ReplicatedStorage.packages._Index["matter-ecs_matter@0.8.5"])
 
@@ -17,16 +15,6 @@ local function start(containers: {Instance}, state)
     local scheduler = planck.Scheduler.new(state)
         :addPlugin(jabbyPlugin)
         :addPlugin(hooksPlugin)
-
-    table.insert(jabby.public, {
-        class_name = "World",
-        name = "MyWorld",
-        world = world,
-        debug = "Main",
-        entities = {},
-    })
-
-    jabby.public.updated = true
 
     for _, container in containers do
         for _, module in container:GetDescendants() do

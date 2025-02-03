@@ -15,6 +15,12 @@ local function ragdoll()
 
         world:add(characterEntity, pair(Previous, Ragdoll))
     end
+
+    for characterEntity, character in world:query(Character):with(pair(Previous, Ragdoll)):without(Ragdoll):iter() do
+        print("Ragdoll removed")
+
+        world:remove(characterEntity, pair(Previous, Ragdoll))
+    end
 end
 
 return {
