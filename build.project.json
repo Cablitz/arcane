@@ -30,6 +30,9 @@
         "$path": "./server-packages"
       }
     },
+    "ServerStorage": {
+      "$path": "./assets/ServerStorage"
+    },
     "StarterPlayer": {
       "$className": "StarterPlayer",
       "$properties": {

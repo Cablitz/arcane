@@ -17,18 +17,14 @@ local Character = characterCts.Character
 local Humanoid = characterCts.Humanoid
 local Human = characterCts.Human
 local Animator = characterCts.Animator
+local Setup = characterCts.Setup
 
 local function addCharacters()
     for playerEntity, player in world:query(Player):iter() do
         for _, character in matter.useEvent(player, "CharacterAdded") do
             local characterEntity = ref(character)
             world:set(characterEntity, Character, character)
-            world:set(characterEntity, Humanoid, character:WaitForChild("Humanoid"))
-            world:set(characterEntity, pair(ChildOf, playerEntity))
-            world:add(characterEntity, Human)
-            world:add(playerEntity, pair(CharacterRef, characterEntity))
-
-            blink.AddCharacter.FireAll(player, character)
+            world:add(characterEntity, Setup)
         end
     end
 end

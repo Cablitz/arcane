@@ -10,11 +10,11 @@ event AddPlayer {
     data: Instance(Player)
 }
 
-event AddCharacter {
+event SetupCharacter {
     from: Server,
     type: Reliable,
     call: SingleSync,
-    data: (Instance(Player), Instance(Model))
+    data: (Instance(Model))
 }
 
 event UseAttackAbility {
