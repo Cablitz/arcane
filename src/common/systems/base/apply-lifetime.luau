@@ -23,7 +23,7 @@ local function applyLifetime()
         local index = 0
         local targetRef = world:target(characterEntity, Lifetime)
 
-        while targetRef do
+        while targetRef and world:get(characterEntity, pair(Lifetime, targetRef)) do
             local currentLifetime = world:get(characterEntity, pair(Lifetime, targetRef))
             local remainingLifetime = currentLifetime - matter.useDeltaTime()
 

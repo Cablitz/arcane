@@ -46,18 +46,14 @@ local function attackInput(state: ClientState)
             world:set(attackEntity, pair(ChildOf, characterEntity))
 
             -- Initilization of attack by spawning parts, animations, components, etc
-            local comboEntity = world:target(characterEntity, Combo)
-            if comboEntity then
-                local currentCombo = world:get(comboEntity, Combo)
-                world:set(comboEntity, Combo, currentCombo + 1)
-                world:remove(comboEntity, Lifetime)
+            if world:has(characterEntity, Combo) then
+                world:set(characterEntity, Combo, (world:get(characterEntity, Combo) :: number) + 1)
+                world:remove(characterEntity, pair(Lifetime, Combo))
             else
-                comboEntity = world:entity()
-                world:set(comboEntity, Combo, 1)
-                world:add(characterEntity, pair(Combo, comboEntity))
+                world:set(characterEntity, Combo, 1)
             end
-            
-            local combo = world:get(comboEntity, Combo)
+
+            local combo = world:get(characterEntity, Combo)
             local attackAnimation = (world:get(characterEntity, pair(Animation, Attacks)) :: {AnimationTrack})[combo]
             attackAnimation:Play()
 
