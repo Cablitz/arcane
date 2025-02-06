@@ -29,7 +29,7 @@ local function setupCharacters()
             world:set(characterEntity, pair(ChildOf, playerEntity))
             world:add(playerEntity, pair(CharacterRef, characterEntity))
         else
-            world:set(characterEntity, Animator, character:WaitForChild("Animator"))
+            world:set(characterEntity, Animator, character.Humanoid:WaitForChild("Animator"))
         end
 
         blink.SetupCharacter.FireAll(character)
