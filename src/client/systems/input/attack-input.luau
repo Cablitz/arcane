@@ -17,7 +17,7 @@ local abilityCts = require("@cts/ability")
 local Attack = abilityCts.Attack
 local Attacks = abilityCts.Attacks
 local Cooldown = abilityCts.Cooldown
-local Active = abilityCts.Active
+local UsingAbility = abilityCts.UsingAbility
 local Duration = abilityCts.Duration
 local Combo = abilityCts.Combo
 
@@ -34,7 +34,7 @@ local attackConfig = {
 }
 
 local function canAttack(characterEntity)
-    return not world:has(characterEntity, pair(Cooldown, Attack)) and not world:has(characterEntity, pair(Active, Attack))
+    return not world:has(characterEntity, pair(Cooldown, Attack)) and not world:has(characterEntity, pair(UsingAbility, Attack))
 end
 
 local function attackInput(state: ClientState)
@@ -63,7 +63,7 @@ local function attackInput(state: ClientState)
 
             world:set(characterEntity, pair(Animation, Attack), attackAnimation)
             world:set(attackEntity, Duration, attackConfig.duration)
-            world:add(characterEntity, pair(Active, Attack))
+            world:add(characterEntity, pair(UsingAbility, Attack))
             world:set(characterEntity, pair(Cooldown, Attack), attackConfig.cooldown)
 
             blink.UseAttackAbility.Fire()

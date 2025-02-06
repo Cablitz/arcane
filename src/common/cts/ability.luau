@@ -8,14 +8,14 @@ local cts: {
     Attack: Entity,
     Attacks: Entity,
     Combo: Entity<number>,
-    Active: Entity,
+    UsingAbility: Entity,
     Cooldown: Entity,
     Duration: Entity,
 } = {
     Attack = world:component(),
     Attacks = world:component(),
     Combo = world:component(),
-    Active = world:component(),
+    UsingAbility = world:component(),
     Cooldown = world:component(),
     Duration = world:component(),
 }

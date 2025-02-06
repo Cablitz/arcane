@@ -10,7 +10,7 @@ local ref = require("@std/ref")
 local abilityCts = require("@cts/ability")
 local Attack = abilityCts.Attack
 local Cooldown = abilityCts.Cooldown
-local Active = abilityCts.Active
+local UsingAbility = abilityCts.UsingAbility
 local Duration = abilityCts.Duration
 local Combo = abilityCts.Combo
 
@@ -24,7 +24,7 @@ local attackConfig = {
 }
 
 local function canAttack(characterEntity)
-    return not world:has(characterEntity, pair(Cooldown, Attack)) and not world:has(characterEntity, pair(Active, Attack))
+    return not world:has(characterEntity, pair(Cooldown, Attack)) and not world:has(characterEntity, pair(UsingAbility, Attack))
 end
 
 local function attackInput()
@@ -51,7 +51,7 @@ local function attackInput()
             end
 
             world:set(attackEntity, Duration, adjustedDuration)
-            world:add(characterEntity, pair(Active, Attack))
+            world:add(characterEntity, pair(UsingAbility, Attack))
             world:set(characterEntity, pair(Cooldown, Attack), adjustedCooldown)
         end
     end

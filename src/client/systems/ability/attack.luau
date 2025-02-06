@@ -6,7 +6,7 @@ local world = require("@std/world")
 local abilityCts = require("@cts/ability")
 local Attack = abilityCts.Attack
 local Duration = abilityCts.Duration
-local Active = abilityCts.Active
+local UsingAbility = abilityCts.UsingAbility
 local Combo = abilityCts.Combo
 
 local animationCts = require("@cts/animation")
@@ -31,7 +31,7 @@ local function attack()
 
         local remainingDuration = duration - matter.useDeltaTime()
         if remainingDuration <= 0 then
-            world:remove(characterEntity, pair(Active, Attack))
+            world:remove(characterEntity, pair(UsingAbility, Attack))
             world:delete(attackEntity)
 
             local comboEntity = world:target(characterEntity, Combo)
