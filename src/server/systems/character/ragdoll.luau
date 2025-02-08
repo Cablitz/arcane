@@ -1,23 +1,45 @@
 local jecs = require("@packages/jecs")
-
+local ragdollUtils = require("@common/utils/ragdoll-utils")
 local pair = jecs.pair
 local Previous = jecs.Rest
 
 local world = require("@std/world")
 
+local replaceJoints = ragdollUtils.replaceJoints
+local resetJoints = ragdollUtils.resetJoints
+
 local characterCts = require("@cts/character")
 local Character = characterCts.Character
+local Humanoid = characterCts.Humanoid
+local Human = characterCts.Human
 local Ragdoll = characterCts.Ragdoll
 
 local function ragdoll()
-    for characterEntity, character in world:query(Character):with(Ragdoll):without(pair(Previous, Ragdoll)):iter() do
+    for characterEntity, character, humanoid in world:query(Character, Humanoid):with(Ragdoll):without(pair(Previous, Ragdoll)):iter() do
         print("Ragdoll added")
+
+        replaceJoints(character)
+
+        if world:has(characterEntity, Human) then
+            humanoid.AutoRotate = false
+        else
+            humanoid:ChangeState(Enum.HumanoidStateType.Ragdoll)
+            humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp, false)
+        end
 
         world:add(characterEntity, pair(Previous, Ragdoll))
     end
 
-    for characterEntity, character in world:query(Character):with(pair(Previous, Ragdoll)):without(Ragdoll):iter() do
+    for characterEntity, character, humanoid in world:query(Character, Humanoid):with(pair(Previous, Ragdoll)):without(Ragdoll):iter() do
         print("Ragdoll removed")
+
+        resetJoints(character)
+    
+        if world:has(characterEntity, Human) then
+            humanoid.AutoRotate = true
+        else
+            humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+        end
 
         world:remove(characterEntity, pair(Previous, Ragdoll))
     end

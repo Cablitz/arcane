@@ -18,6 +18,8 @@ local Particle = effectCts.Particle
 local Highlight = effectCts.Highlight
 
 local particleUtils = require("@client/utils/particle-utils")
+local createParticle = particleUtils.createParticle
+local emitParticle = particleUtils.emitParticle
 
 local particles = ReplicatedStorage.particles
 
@@ -34,7 +36,7 @@ end
 local function applyHit()
     for _, targetCharacter in blink.CharacterHit.Iter() do
         local targetEntity = ref(targetCharacter)
-        local bloodParticle = particleUtils.createParticle(particles.blood, targetCharacter)
+        local bloodParticle = createParticle(particles.blood, targetCharacter)
         local hitHighlight = createHitHighlight(targetCharacter)
         
         local particleEntity = world:entity()
@@ -49,7 +51,7 @@ local function applyHit()
         world:set(highlightEntity, Renderable, hitHighlight)
         world:set(highlightEntity, pair(ChildOf, targetEntity))
 
-        particleUtils.emitParticle(bloodParticle)
+        emitParticle(bloodParticle)
     end
 end
 

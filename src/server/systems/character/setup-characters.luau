@@ -1,12 +1,15 @@
 local Players = game:GetService("Players")
 local blink = require("@blink/server")
 local jecs = require("@packages/jecs")
+local ragdollUtils = require("@common/utils/ragdoll-utils")
 
 local pair = jecs.pair
 local ChildOf = jecs.ChildOf
 
 local world = require("@std/world")
 local ref = require("@std/ref")
+
+local setupRagdoll = ragdollUtils.setupRagdoll
 
 local characterCts = require("@cts/character")
 local Character = characterCts.Character
@@ -21,6 +24,8 @@ local CharacterRef = playerCts.CharacterRef
 local function setupCharacters()
     for characterEntity, character in world:query(Character):with(Setup):iter() do
         world:set(characterEntity, Humanoid, character:WaitForChild("Humanoid"))
+
+        setupRagdoll(character)
 
         local player = Players:GetPlayerFromCharacter(character)
         if player then
