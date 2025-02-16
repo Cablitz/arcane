@@ -14,7 +14,7 @@ event SetupCharacter {
     from: Server,
     type: Reliable,
     call: SingleSync,
-    data: (Instance(Model))
+    data: Instance(Model)
 }
 
 event UseAttackAbility {
@@ -30,9 +30,16 @@ event AttackCharacter {
     data: Instance(Model)
 }
 
-event CharacterHit {
+event HitCharacter {
     from: Server,
     type: Reliable,
     call: SingleSync,
     data: Instance(Model)
+}
+
+event KnockbackCharacter {
+    from: Server,
+    type: Reliable,
+    call: SingleSync,
+    data: vector
 }

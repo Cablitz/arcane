@@ -2,8 +2,6 @@ local matter = require("@packages/matter")
 local jecs = require("@packages/jecs")
 local blink = require("@blink/server")
 
-local ChildOf = jecs.ChildOf
-
 local world = require("@std/world")
 local ref = require("@std/ref")
 
@@ -23,6 +21,7 @@ local Hit = combatCts.Hit
 
 local baseCts = require("@cts/base")
 local Target = baseCts.Target
+local Source = baseCts.Source
 local Lifetime = baseCts.Lifetime
 
 local pair = jecs.pair
@@ -58,9 +57,9 @@ local function attack()
         if not world:has(attackerCharacterRef, pair(UsingAbility, Attack)) then continue end
 
         local hitEntity = world:entity()
-        world:add(hitEntity, pair(ChildOf, attackerCharacterRef))
+        world:add(hitEntity, pair(Source, attackerCharacterRef))
         world:add(hitEntity, pair(Target, targetCharacterRef))
-        world:set(hitEntity, Hit, 15)
+        world:set(hitEntity, Hit, 5)
     end
 end
 

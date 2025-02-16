@@ -2,7 +2,6 @@ local blink = require("@blink/server")
 local jecs = require("@packages/jecs")
 
 local pair = jecs.pair
-local ChildOf = jecs.ChildOf
 local world = require("@std/world")
 
 local combatCts = require("@cts/combat")
@@ -15,6 +14,9 @@ local Character = characterCts.Character
 local Human = characterCts.Human
 local Ragdoll = characterCts.Ragdoll
 local Root = characterCts.Root
+
+local playerCts = require("@cts/player")
+local Player = playerCts.Player
 
 local abilityCts = require("@cts/ability")
 local Combo = abilityCts.Combo
@@ -32,13 +34,13 @@ local Lifetime = baseCts.Lifetime
 
 local function applyHit()
     for hitEntity, hit in world:query(Hit):iter() do
-        local attackerRef = world:target(hitEntity, ChildOf)
+        local attackerRef = world:target(hitEntity, Source)
         local targetRef = world:target(hitEntity, Target)
         local targetCharacter = world:get(targetRef, Character)
         local targetRoot = world:get(targetRef, Root)
         local attackerRoot = world:get(attackerRef, Root)
 
-        blink.CharacterHit.FireAll(targetCharacter)
+        blink.HitCharacter.FireAll(targetCharacter)
 
         if not world:has(targetRef, Human) then
             local hitAnimations = world:get(targetRef, pair(Animation, Hits)) :: {AnimationTrack}
@@ -54,12 +56,17 @@ local function applyHit()
             world:add(targetRef, Ragdoll)
             world:set(targetRef, pair(Lifetime, Ragdoll), 3)
 
+            local knockbackLookVector = (targetRoot.Position - attackerRoot.Position).Unit
+
             if not world:has(targetRef, Human) then
                 targetRoot:ApplyAngularImpulse(Vector3.new(-90, 0, 0))
 
-                local knockbackLookVector = (targetRoot.Position - attackerRoot.Position).Unit
-                world:set(targetRef, Velocity, knockbackLookVector * 25)
+                world:set(targetRef, Velocity, knockbackLookVector * 30)
                 world:set(targetRef, pair(Lifetime, Velocity), 0.25)
+            else
+                local targetPlayerRef = world:parent(targetRef)
+                local targetPlayer = world:get(targetPlayerRef, Player)
+                blink.KnockbackCharacter.Fire(targetPlayer, knockbackLookVector)
             end
         end
 

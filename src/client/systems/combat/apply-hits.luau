@@ -17,6 +17,13 @@ local effectCts = require("@cts/effect")
 local Particle = effectCts.Particle
 local Highlight = effectCts.Highlight
 
+local characterCts = require("@cts/character")
+local Client = characterCts.Client
+local Root = characterCts.Root
+
+local physicsCts = require("@cts/physics")
+local Velocity = physicsCts.Velocity
+
 local particleUtils = require("@client/utils/particle-utils")
 local createParticle = particleUtils.createParticle
 local emitParticle = particleUtils.emitParticle
@@ -34,7 +41,7 @@ local function createHitHighlight(character: Model)
 end
 
 local function applyHit()
-    for _, targetCharacter in blink.CharacterHit.Iter() do
+    for _, targetCharacter in blink.HitCharacter.Iter() do
         local targetEntity = ref(targetCharacter)
         local bloodParticle = createParticle(particles.blood, targetCharacter)
         local hitHighlight = createHitHighlight(targetCharacter)
@@ -52,6 +59,15 @@ local function applyHit()
         world:set(highlightEntity, pair(ChildOf, targetEntity))
 
         emitParticle(bloodParticle)
+    end
+
+    for _, knockbackLookVector in blink.KnockbackCharacter.Iter() do
+        for targetEntity, root in world:query(Root):with(Client):iter() do
+            root:ApplyAngularImpulse(Vector3.new(-90, 0, 0))
+
+            world:set(targetEntity, Velocity, knockbackLookVector * 30)
+            world:set(targetEntity, pair(Lifetime, Velocity), 0.25)
+        end
     end
 end
 
