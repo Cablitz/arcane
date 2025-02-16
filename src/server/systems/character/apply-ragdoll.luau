@@ -1,5 +1,5 @@
 local jecs = require("@packages/jecs")
-local ragdollUtils = require("@common/utils/ragdoll-utils")
+local ragdollUtils = require("@shared/utils/ragdoll-utils")
 local pair = jecs.pair
 local Previous = jecs.Rest
 

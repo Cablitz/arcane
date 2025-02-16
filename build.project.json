@@ -6,8 +6,8 @@
       "client": {
         "$path": "dist/client"
       },
-      "common": {
-        "$path": "dist/common"
+      "shared": {
+        "$path": "dist/shared"
       },
       "network": {
         "$path": ".blink/client.luau"
@@ -48,7 +48,7 @@
   "syncbackRules": {
     "ignoreTrees": [
       "ReplicatedStorage/client",
-      "ReplicatedStorage/common",
+      "ReplicatedStorage/shared",
       "ReplicatedStorage/packages",
       "ReplicatedStorage/network",
       "ServerScriptService/network",

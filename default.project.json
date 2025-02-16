@@ -8,8 +8,8 @@
             "client": {
                 "$path": "src/client"
             },
-            "common": {
-                "$path": "src/common"
+            "shared": {
+                "$path": "src/shared"
             },
             "network": {
                 "$path": ".blink/client.luau"

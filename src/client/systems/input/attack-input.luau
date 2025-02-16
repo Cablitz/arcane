@@ -24,7 +24,7 @@ local Combo = abilityCts.Combo
 local animationCts = require("@cts/animation")
 local Animation = animationCts.Animation
 
-local clientState = require("@common/constants/client-state")
+local clientState = require("@shared/constants/client-state")
 type ClientState = clientState.ClientState
 
 local attackConfig = {

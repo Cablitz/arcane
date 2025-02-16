@@ -9,11 +9,11 @@
                     "@controllers": "src/client/controllers",
                     "@server": "src/server",
                     "@services": "src/server/services",
-                    "@common": "src/common",
+                    "@shared": "src/shared",
                     "@blink": ".blink",
                     "@packages": "./roblox_packages",
-                    "@std": "src/common/std",
-                    "@cts": "src/common/cts"
+                    "@std": "src/shared/std",
+                    "@cts": "src/shared/cts"
                 }
             },
             "target": {
