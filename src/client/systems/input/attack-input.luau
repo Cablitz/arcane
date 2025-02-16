@@ -28,45 +28,46 @@ local clientState = require("@shared/constants/client-state")
 type ClientState = clientState.ClientState
 
 local attackConfig = {
-    cooldown = 0.25,
-    duration = 0.5,
-    comboLifetime = 1,
+	cooldown = 0.25,
+	duration = 0.5,
+	comboLifetime = 1,
 }
 
 local function canAttack(characterEntity)
-    return not world:has(characterEntity, pair(Cooldown, Attack)) and not world:has(characterEntity, pair(UsingAbility, Attack))
+	return not world:has(characterEntity, pair(Cooldown, Attack))
+		and not world:has(characterEntity, pair(UsingAbility, Attack))
 end
 
 local function attackInput(state: ClientState)
-    for characterEntity, character in world:query(Character):with(Client):iter() do
-        if canAttack(characterEntity) and state.input.actions:justPressed("attack") then
-            local attackEntity = world:entity()
-            
-            world:add(attackEntity, Attack)
-            world:set(attackEntity, pair(ChildOf, characterEntity))
+	for characterEntity, character in world:query(Character):with(Client):iter() do
+		if canAttack(characterEntity) and state.input.actions:justPressed("attack") then
+			local attackEntity = world:entity()
 
-            -- Initilization of attack by spawning parts, animations, components, etc
-            if world:has(characterEntity, Combo) then
-                world:set(characterEntity, Combo, (world:get(characterEntity, Combo) :: number) + 1)
-                world:remove(characterEntity, pair(Lifetime, Combo))
-            else
-                world:set(characterEntity, Combo, 1)
-            end
+			world:add(attackEntity, Attack)
+			world:set(attackEntity, pair(ChildOf, characterEntity))
 
-            local combo = world:get(characterEntity, Combo)
-            local attackAnimation = (world:get(characterEntity, pair(Animation, Attacks)) :: {AnimationTrack})[combo]
-            attackAnimation:Play()
+			-- Initilization of attack by spawning parts, animations, components, etc
+			if world:has(characterEntity, Combo) then
+				world:set(characterEntity, Combo, (world:get(characterEntity, Combo) :: number) + 1)
+				world:remove(characterEntity, pair(Lifetime, Combo))
+			else
+				world:set(characterEntity, Combo, 1)
+			end
 
-            world:set(characterEntity, pair(Animation, Attack), attackAnimation)
-            world:set(attackEntity, Duration, attackConfig.duration)
-            world:add(characterEntity, pair(UsingAbility, Attack))
-            world:set(characterEntity, pair(Cooldown, Attack), attackConfig.cooldown)
+			local combo = world:get(characterEntity, Combo)
+			local attackAnimation = (world:get(characterEntity, pair(Animation, Attacks)) :: { AnimationTrack })[combo]
+			attackAnimation:Play()
 
-            blink.UseAttackAbility.Fire()
-        end
-    end
+			world:set(characterEntity, pair(Animation, Attack), attackAnimation)
+			world:set(attackEntity, Duration, attackConfig.duration)
+			world:add(characterEntity, pair(UsingAbility, Attack))
+			world:set(characterEntity, pair(Cooldown, Attack), attackConfig.cooldown)
+
+			blink.UseAttackAbility.Fire()
+		end
+	end
 end
 
 return {
-    system = attackInput,
+	system = attackInput,
 }

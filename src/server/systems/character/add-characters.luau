@@ -20,15 +20,15 @@ local Animator = characterCts.Animator
 local Setup = characterCts.Setup
 
 local function addCharacters()
-    for playerEntity, player in world:query(Player):iter() do
-        for _, character in matter.useEvent(player, "CharacterAdded") do
-            local characterEntity = ref(character)
-            world:set(characterEntity, Character, character)
-            world:add(characterEntity, Setup)
-        end
-    end
+	for playerEntity, player in world:query(Player):iter() do
+		for _, character in matter.useEvent(player, "CharacterAdded") do
+			local characterEntity = ref(character)
+			world:set(characterEntity, Character, character)
+			world:add(characterEntity, Setup)
+		end
+	end
 end
 
 return {
-    system = addCharacters,
+	system = addCharacters,
 }

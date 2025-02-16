@@ -15,23 +15,23 @@ local baseCts = require("@cts/base")
 local Renderable = baseCts.Renderable
 
 local function applyVelocity()
-    for characterEntity, root, velocity in world:query(Root, Velocity):without(pair(Previous, Velocity)):iter() do
-        local linearVelocity = Instance.new("LinearVelocity")
-        linearVelocity.VectorVelocity = velocity
-        linearVelocity.MaxForce = math.huge
-        linearVelocity.Attachment0 = root.RootAttachment
-        linearVelocity.Parent = root
+	for characterEntity, root, velocity in world:query(Root, Velocity):without(pair(Previous, Velocity)):iter() do
+		local linearVelocity = Instance.new("LinearVelocity")
+		linearVelocity.VectorVelocity = velocity
+		linearVelocity.MaxForce = math.huge
+		linearVelocity.Attachment0 = root.RootAttachment
+		linearVelocity.Parent = root
 
-        world:set(characterEntity, pair(Renderable, Velocity), linearVelocity)
-        world:set(characterEntity, pair(Previous, Velocity), velocity)
-    end
+		world:set(characterEntity, pair(Renderable, Velocity), linearVelocity)
+		world:set(characterEntity, pair(Previous, Velocity), velocity)
+	end
 
-    for characterEntity, root in world:query(Root):with(pair(Previous, Velocity)):without(Velocity):iter() do
-        local linearVelocity = world:get(characterEntity, pair(Renderable, Velocity))
-        linearVelocity:Destroy()
+	for characterEntity, root in world:query(Root):with(pair(Previous, Velocity)):without(Velocity):iter() do
+		local linearVelocity = world:get(characterEntity, pair(Renderable, Velocity))
+		linearVelocity:Destroy()
 
-        world:remove(characterEntity, pair(Previous, Velocity))
-    end
+		world:remove(characterEntity, pair(Previous, Velocity))
+	end
 end
 
 return applyVelocity

@@ -23,27 +23,27 @@ local playerCts = require("@cts/player")
 local CharacterRef = playerCts.CharacterRef
 
 local function setupCharacters()
-    for characterEntity, character in world:query(Character):with(Setup):iter() do
-        world:set(characterEntity, Root, character:WaitForChild("HumanoidRootPart"))
-        world:set(characterEntity, Humanoid, character:WaitForChild("Humanoid"))
+	for characterEntity, character in world:query(Character):with(Setup):iter() do
+		world:set(characterEntity, Root, character:WaitForChild("HumanoidRootPart"))
+		world:set(characterEntity, Humanoid, character:WaitForChild("Humanoid"))
 
-        setupRagdoll(character)
+		setupRagdoll(character)
 
-        local player = Players:GetPlayerFromCharacter(character)
-        if player then
-            local playerEntity = ref(player)
-            world:add(characterEntity, Human)
-            world:set(characterEntity, pair(ChildOf, playerEntity))
-            world:add(playerEntity, pair(CharacterRef, characterEntity))
-        else
-            world:set(characterEntity, Animator, character.Humanoid:WaitForChild("Animator"))
-        end
+		local player = Players:GetPlayerFromCharacter(character)
+		if player then
+			local playerEntity = ref(player)
+			world:add(characterEntity, Human)
+			world:set(characterEntity, pair(ChildOf, playerEntity))
+			world:add(playerEntity, pair(CharacterRef, characterEntity))
+		else
+			world:set(characterEntity, Animator, character.Humanoid:WaitForChild("Animator"))
+		end
 
-        blink.SetupCharacter.FireAll(character)
-        world:remove(characterEntity, Setup)
-    end
+		blink.SetupCharacter.FireAll(character)
+		world:remove(characterEntity, Setup)
+	end
 end
 
 return {
-    system = setupCharacters,
+	system = setupCharacters,
 }

@@ -17,35 +17,39 @@ local Human = characterCts.Human
 local Ragdoll = characterCts.Ragdoll
 
 local function ragdoll()
-    for characterEntity, character, humanoid in world:query(Character, Humanoid):with(Ragdoll):without(pair(Previous, Ragdoll)):iter() do
-        print("Ragdoll added")
+	for characterEntity, character, humanoid in
+		world:query(Character, Humanoid):with(Ragdoll):without(pair(Previous, Ragdoll)):iter()
+	do
+		print("Ragdoll added")
 
-        replaceJoints(character)
+		replaceJoints(character)
 
-        if world:has(characterEntity, Human) then
-            humanoid.AutoRotate = false
-        else
-            ragdollHumanoidState(humanoid)
-        end
+		if world:has(characterEntity, Human) then
+			humanoid.AutoRotate = false
+		else
+			ragdollHumanoidState(humanoid)
+		end
 
-        world:add(characterEntity, pair(Previous, Ragdoll))
-    end
+		world:add(characterEntity, pair(Previous, Ragdoll))
+	end
 
-    for characterEntity, character, humanoid in world:query(Character, Humanoid):with(pair(Previous, Ragdoll)):without(Ragdoll):iter() do
-        print("Ragdoll removed")
+	for characterEntity, character, humanoid in
+		world:query(Character, Humanoid):with(pair(Previous, Ragdoll)):without(Ragdoll):iter()
+	do
+		print("Ragdoll removed")
 
-        resetJoints(character)
-    
-        if world:has(characterEntity, Human) then
-            humanoid.AutoRotate = true
-        else
-            unragdollHumanoidState(humanoid)
-        end
+		resetJoints(character)
 
-        world:remove(characterEntity, pair(Previous, Ragdoll))
-    end
+		if world:has(characterEntity, Human) then
+			humanoid.AutoRotate = true
+		else
+			unragdollHumanoidState(humanoid)
+		end
+
+		world:remove(characterEntity, pair(Previous, Ragdoll))
+	end
 end
 
 return {
-    system = ragdoll,
+	system = ragdoll,
 }

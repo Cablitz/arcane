@@ -7,12 +7,12 @@ local playerCts = require("@cts/player")
 local Player = playerCts.Player
 
 local function addPlayers()
-    for _, player in blink.AddPlayer.Iter() do
-        local playerEntity = ref(player)
-        world:set(playerEntity, Player, player)
-    end
+	for _, player in blink.AddPlayer.Iter() do
+		local playerEntity = ref(player)
+		world:set(playerEntity, Player, player)
+	end
 end
 
 return {
-    system = addPlayers,
+	system = addPlayers,
 }

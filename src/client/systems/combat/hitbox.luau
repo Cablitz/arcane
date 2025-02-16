@@ -14,29 +14,29 @@ local scanHitbox = hitboxUtils.scanHitbox
 local findClosestCharacter = hitboxUtils.findClosestCharacter
 
 local function hitbox()
-    for abilityEntity in world:query(Hitbox):iter() do
-        local characterEntity = world:parent(abilityEntity)
-        local character = world:get(characterEntity, Character)
+	for abilityEntity in world:query(Hitbox):iter() do
+		local characterEntity = world:parent(abilityEntity)
+		local character = world:get(characterEntity, Character)
 
-        -- Create hitbox with standard configuration
-        local part = createHitbox(character, {
-            hitboxSize = Vector3.new(8, 8, 6),
-            hitboxOffset = Vector3.new(0, 0, -4),
-            hitboxDuration = 0.25,
-        })
+		-- Create hitbox with standard configuration
+		local part = createHitbox(character, {
+			hitboxSize = Vector3.new(8, 8, 6),
+			hitboxOffset = Vector3.new(0, 0, -4),
+			hitboxDuration = 0.25,
+		})
 
-        -- Scan for enemies and find the closest one
-        local hitCharacters = scanHitbox(part, {character})
-        local hitCharacter = findClosestCharacter(character, hitCharacters)
+		-- Scan for enemies and find the closest one
+		local hitCharacters = scanHitbox(part, { character })
+		local hitCharacter = findClosestCharacter(character, hitCharacters)
 
-        if hitCharacter then
-            blink.AttackCharacter.Fire(hitCharacter)
-        end
+		if hitCharacter then
+			blink.AttackCharacter.Fire(hitCharacter)
+		end
 
-        world:remove(abilityEntity, Hitbox)
-    end
+		world:remove(abilityEntity, Hitbox)
+	end
 end
 
 return {
-    system = hitbox,
+	system = hitbox,
 }

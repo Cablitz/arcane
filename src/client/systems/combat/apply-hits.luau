@@ -31,37 +31,37 @@ local emitParticle = particleUtils.emitParticle
 local particles = ReplicatedStorage.particles
 
 local function createHitHighlight(character: Model)
-    local highlight = Instance.new("Highlight")
-    highlight.FillColor = Color3.fromRGB(255, 0, 0)
-    highlight.FillTransparency = 0.6
-    highlight.OutlineTransparency = 1
-    highlight.Parent = character
+	local highlight = Instance.new("Highlight")
+	highlight.FillColor = Color3.fromRGB(255, 0, 0)
+	highlight.FillTransparency = 0.6
+	highlight.OutlineTransparency = 1
+	highlight.Parent = character
 
-    return highlight
+	return highlight
 end
 
 local function applyHit()
-    for _, targetCharacter in blink.HitCharacter.Iter() do
-        local targetEntity = ref(targetCharacter)
-        local bloodParticle = createParticle(particles.blood, targetCharacter)
-        local hitHighlight = createHitHighlight(targetCharacter)
-        
-        local particleEntity = world:entity()
-        world:add(particleEntity, Particle)
-        world:set(particleEntity, Lifetime, 1)
-        world:set(particleEntity, Renderable, bloodParticle)
-        world:set(particleEntity, pair(ChildOf, targetEntity))
+	for _, targetCharacter in blink.HitCharacter.Iter() do
+		local targetEntity = ref(targetCharacter)
+		local bloodParticle = createParticle(particles.blood, targetCharacter)
+		local hitHighlight = createHitHighlight(targetCharacter)
 
-        local highlightEntity = world:entity()
-        world:add(highlightEntity, Highlight)
-        world:set(highlightEntity, Lifetime, 0.25)
-        world:set(highlightEntity, Renderable, hitHighlight)
-        world:set(highlightEntity, pair(ChildOf, targetEntity))
+		local particleEntity = world:entity()
+		world:add(particleEntity, Particle)
+		world:set(particleEntity, Lifetime, 1)
+		world:set(particleEntity, Renderable, bloodParticle)
+		world:set(particleEntity, pair(ChildOf, targetEntity))
 
-        emitParticle(bloodParticle)
-    end
+		local highlightEntity = world:entity()
+		world:add(highlightEntity, Highlight)
+		world:set(highlightEntity, Lifetime, 0.25)
+		world:set(highlightEntity, Renderable, hitHighlight)
+		world:set(highlightEntity, pair(ChildOf, targetEntity))
+
+		emitParticle(bloodParticle)
+	end
 end
 
 return {
-    system = applyHit,
+	system = applyHit,
 }

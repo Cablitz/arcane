@@ -27,42 +27,48 @@ local Lifetime = baseCts.Lifetime
 local pair = jecs.pair
 
 local function attack()
-    for attackEntity, duration in world:query(Duration):with(Attack):iter() do
-        local characterEntity = world:parent(attackEntity)
-        local remainingDuration = duration - matter.useDeltaTime()
+	for attackEntity, duration in world:query(Duration):with(Attack):iter() do
+		local characterEntity = world:parent(attackEntity)
+		local remainingDuration = duration - matter.useDeltaTime()
 
-        if remainingDuration <= 0 then
-            world:remove(characterEntity, pair(UsingAbility, Attack))
-            world:delete(attackEntity)
+		if remainingDuration <= 0 then
+			world:remove(characterEntity, pair(UsingAbility, Attack))
+			world:delete(attackEntity)
 
-            if world:get(characterEntity, Combo) < 4 then
-                world:set(characterEntity, pair(Lifetime, Combo), 0.25)
-            else
-                world:remove(characterEntity, Combo)
-            end
-        else
-            world:set(attackEntity, Duration, remainingDuration)
-        end
-    end
+			if world:get(characterEntity, Combo) < 4 then
+				world:set(characterEntity, pair(Lifetime, Combo), 0.25)
+			else
+				world:remove(characterEntity, Combo)
+			end
+		else
+			world:set(attackEntity, Duration, remainingDuration)
+		end
+	end
 
-    -- Handle attack hits from clients
-    for _, attackerPlayer, targetCharacter in blink.AttackCharacter.Iter() do
-        local attackerPlayerRef = ref(attackerPlayer)
-        local attackerCharacterRef = world:target(attackerPlayerRef, CharacterRef)
-        local targetCharacterRef = ref(targetCharacter)
+	-- Handle attack hits from clients
+	for _, attackerPlayer, targetCharacter in blink.AttackCharacter.Iter() do
+		local attackerPlayerRef = ref(attackerPlayer)
+		local attackerCharacterRef = world:target(attackerPlayerRef, CharacterRef)
+		local targetCharacterRef = ref(targetCharacter)
 
-        -- Guard clauses
-        if not attackerCharacterRef then continue end
-        if not world:has(targetCharacterRef, Character) then continue end
-        if not world:has(attackerCharacterRef, pair(UsingAbility, Attack)) then continue end
+		-- Guard clauses
+		if not attackerCharacterRef then
+			continue
+		end
+		if not world:has(targetCharacterRef, Character) then
+			continue
+		end
+		if not world:has(attackerCharacterRef, pair(UsingAbility, Attack)) then
+			continue
+		end
 
-        local hitEntity = world:entity()
-        world:add(hitEntity, pair(Source, attackerCharacterRef))
-        world:add(hitEntity, pair(Target, targetCharacterRef))
-        world:set(hitEntity, Hit, 5)
-    end
+		local hitEntity = world:entity()
+		world:add(hitEntity, pair(Source, attackerCharacterRef))
+		world:add(hitEntity, pair(Target, targetCharacterRef))
+		world:set(hitEntity, Hit, 5)
+	end
 end
 
 return {
-    system = attack,
-} 
+	system = attack,
+}

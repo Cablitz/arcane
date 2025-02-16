@@ -5,9 +5,9 @@ local world = require("@std/world")
 type Entity<T = nil> = jecs.Entity<T>
 
 local cts: {
-    Animation: Entity,
+	Animation: Entity,
 } = {
-    Animation = world:component(),
+	Animation = world:component(),
 }
 
 return cts

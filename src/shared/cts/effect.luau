@@ -5,11 +5,11 @@ local world = require("@std/world")
 type Entity<T = nil> = jecs.Entity<T>
 
 local cts: {
-    Particle: Entity,
-    Highlight: Entity,
+	Particle: Entity,
+	Highlight: Entity,
 } = {
-    Particle = world:component(),
-    Highlight = world:component(),
+	Particle = world:component(),
+	Highlight = world:component(),
 }
 
 return cts

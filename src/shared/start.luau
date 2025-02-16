@@ -11,37 +11,35 @@ local matterHooks = require("@packages/matter-hooks")
 local jabbyPlugin = PlanckJabby.new()
 local hooksPlugin = matterHooks.Plugin.new(ReplicatedStorage.packages[".pesde"]["matter-ecs_matter@0.8.5"])
 
-local function start(containers: {Instance}, state)
-    local scheduler = planck.Scheduler.new(state)
-        :addPlugin(jabbyPlugin)
-        :addPlugin(hooksPlugin)
+local function start(containers: { Instance }, state)
+	local scheduler = planck.Scheduler.new(state):addPlugin(jabbyPlugin):addPlugin(hooksPlugin)
 
-    for _, container in containers do
-        for _, module in container:GetDescendants() do
-            if module:IsA("ModuleScript") then
-                scheduler:addSystem(require(module))
-            end
-        end
-    end
+	for _, container in containers do
+		for _, module in container:GetDescendants() do
+			if module:IsA("ModuleScript") then
+				scheduler:addSystem(require(module))
+			end
+		end
+	end
 
-    jabby.set_check_function(function(player)
-        return true
-    end)
+	jabby.set_check_function(function(player)
+		return true
+	end)
 
-    if RunService:IsClient() then
-        local player = Players.LocalPlayer
-        local playerGui = player:WaitForChild("PlayerGui")
-        local client = jabby.obtain_client()
-        UserInputService.InputBegan:Connect(function(input)
-            if input.KeyCode == Enum.KeyCode.F4 then
-                local home = playerGui:FindFirstChild("Home")
-                if home then
-                    home:Destroy()
-                end
-                client.spawn_app(client.apps.home)
-            end
-        end)
-    end
+	if RunService:IsClient() then
+		local player = Players.LocalPlayer
+		local playerGui = player:WaitForChild("PlayerGui")
+		local client = jabby.obtain_client()
+		UserInputService.InputBegan:Connect(function(input)
+			if input.KeyCode == Enum.KeyCode.F4 then
+				local home = playerGui:FindFirstChild("Home")
+				if home then
+					home:Destroy()
+				end
+				client.spawn_app(client.apps.home)
+			end
+		end)
+	end
 end
 
 return start

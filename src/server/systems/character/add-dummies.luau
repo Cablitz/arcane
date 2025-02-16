@@ -10,19 +10,17 @@ local characterCts = require("@cts/character")
 local Character = characterCts.Character
 local Setup = characterCts.Setup
 
-local function addDummies()
-    
-end
+local function addDummies() end
 
 for _, dummy in dummies:GetChildren() do
-    local dummyInstance = dummy:Clone()
-    dummyInstance.Parent = workspace
+	local dummyInstance = dummy:Clone()
+	dummyInstance.Parent = workspace
 
-    local dummyEntity = ref(dummyInstance)
-    world:set(dummyEntity, Character, dummyInstance)
-    world:add(dummyEntity, Setup)
+	local dummyEntity = ref(dummyInstance)
+	world:set(dummyEntity, Character, dummyInstance)
+	world:add(dummyEntity, Setup)
 end
 
 return {
-    system = addDummies,
+	system = addDummies,
 }

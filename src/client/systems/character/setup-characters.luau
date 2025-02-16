@@ -16,24 +16,24 @@ local Humanoid = characterCts.Humanoid
 local Client = characterCts.Client
 
 local function setupCharacters()
-    for _, character in blink.SetupCharacter.Iter() do
-        local characterEntity = ref(character)
-        world:set(characterEntity, Character, character)
-        world:set(characterEntity, Humanoid, character:WaitForChild("Humanoid"))
-        world:set(characterEntity, Animator, character.Humanoid:WaitForChild("Animator"))
+	for _, character in blink.SetupCharacter.Iter() do
+		local characterEntity = ref(character)
+		world:set(characterEntity, Character, character)
+		world:set(characterEntity, Humanoid, character:WaitForChild("Humanoid"))
+		world:set(characterEntity, Animator, character.Humanoid:WaitForChild("Animator"))
 
-        local player = Players:GetPlayerFromCharacter(character)
-        if player then
-            local playerEntity = ref(player)
-            world:set(characterEntity, pair(ChildOf, playerEntity))
+		local player = Players:GetPlayerFromCharacter(character)
+		if player then
+			local playerEntity = ref(player)
+			world:set(characterEntity, pair(ChildOf, playerEntity))
 
-            if player == Players.LocalPlayer then
-                world:add(characterEntity, Client)
-            end
-        end
-    end
+			if player == Players.LocalPlayer then
+				world:add(characterEntity, Client)
+			end
+		end
+	end
 end
 
 return {
-    system = setupCharacters,
+	system = setupCharacters,
 }

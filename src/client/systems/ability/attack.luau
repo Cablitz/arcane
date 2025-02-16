@@ -21,30 +21,30 @@ local Lifetime = baseCts.Lifetime
 local pair = jecs.pair
 
 local function attack()
-    for attackEntity, duration in world:query(Duration):with(Attack):iter() do
-        local characterEntity = world:parent(attackEntity)
-        local animation = world:get(characterEntity, pair(Animation, Attack)) :: AnimationTrack
+	for attackEntity, duration in world:query(Duration):with(Attack):iter() do
+		local characterEntity = world:parent(attackEntity)
+		local animation = world:get(characterEntity, pair(Animation, Attack)) :: AnimationTrack
 
-        for _ in matter.useEvent(animation, animation:GetMarkerReachedSignal("hitreg")) do
-            world:add(attackEntity, Hitbox)
-        end
+		for _ in matter.useEvent(animation, animation:GetMarkerReachedSignal("hitreg")) do
+			world:add(attackEntity, Hitbox)
+		end
 
-        local remainingDuration = duration - matter.useDeltaTime()
-        if remainingDuration <= 0 then
-            world:remove(characterEntity, pair(UsingAbility, Attack))
-            world:delete(attackEntity)
+		local remainingDuration = duration - matter.useDeltaTime()
+		if remainingDuration <= 0 then
+			world:remove(characterEntity, pair(UsingAbility, Attack))
+			world:delete(attackEntity)
 
-            if world:get(characterEntity, Combo) < 4 then
-                world:set(characterEntity, pair(Lifetime, Combo), 0.25)
-            else
-                world:remove(characterEntity, Combo)
-            end
-        else
-            world:set(attackEntity, Duration, remainingDuration)
-        end
-    end
+			if world:get(characterEntity, Combo) < 4 then
+				world:set(characterEntity, pair(Lifetime, Combo), 0.25)
+			else
+				world:remove(characterEntity, Combo)
+			end
+		else
+			world:set(attackEntity, Duration, remainingDuration)
+		end
+	end
 end
 
 return {
-    system = attack,
+	system = attack,
 }

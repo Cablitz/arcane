@@ -1,6 +1,6 @@
 local world = require(script.Parent.world)
 local jecs = require("@packages/jecs")
-local refs: {[any]: jecs.Entity<nil>} = {}
+local refs: { [any]: jecs.Entity<nil> } = {}
 
 local function fini(key): () -> ()
 	return function()
