@@ -11,8 +11,7 @@
                     "@services": "src/server/services",
                     "@common": "src/common",
                     "@blink": ".blink",
-                    "@packages": "./packages",
-                    "@server-packages": "./server-packages",
+                    "@packages": "./roblox_packages",
                     "@std": "src/common/std",
                     "@cts": "src/common/cts"
                 }

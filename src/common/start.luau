@@ -9,7 +9,7 @@ local PlanckJabby = require("@packages/planck-jabby")
 local matterHooks = require("@packages/matter-hooks")
 
 local jabbyPlugin = PlanckJabby.new()
-local hooksPlugin = matterHooks.Plugin.new(ReplicatedStorage.packages._Index["matter-ecs_matter@0.8.5"])
+local hooksPlugin = matterHooks.Plugin.new(ReplicatedStorage.packages[".pesde"]["matter-ecs_matter@0.8.5"])
 
 local function start(containers: {Instance}, state)
     local scheduler = planck.Scheduler.new(state)

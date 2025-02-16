@@ -1,5 +1,5 @@
 {
-    "name": "chainsaw",
+    "name": "arcane",
     "emitLegacyScripts": false,
     "tree": {
         "$className": "DataModel",
@@ -16,7 +16,7 @@
             },
             "packages": {
                 "$className": "Folder",
-                "$path": "./packages"
+                "$path": "./roblox_packages"
             }
         },
         "ServerScriptService": {
@@ -25,10 +25,6 @@
             },
             "network": {
                 "$path": ".blink/server.luau"
-            },
-            "server-packages": {
-                "$className": "Folder",
-                "$path": "./server-packages"
             }
         },
         "ServerStorage": {

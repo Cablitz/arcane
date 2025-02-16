@@ -32,8 +32,8 @@ local function recursiveCopy(src, dest)
 	end
 end
 
-if fs.isFile("src/server/network.zap") then
-	execCommandWrapper("zap", { "src/server/network.zap" })
+if fs.isFile("src/server/network.blink") then
+	execCommandWrapper("blink", { "src/server/network.blink" })
 end
 
 if not fs.isDir("packages") and not fs.isDir("Packages") and fs.isFile("wally.toml") then

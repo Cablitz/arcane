@@ -23,8 +23,8 @@ if not fs.isDir("packages") then
 end
 
 -- do this so the project file doesn't refer to files that don't exist and cause rojo to fail
-if fs.isFile("src/server/network.zap") then
-	executeCommand("zap", { "src/server/network.zap" })
+if fs.isFile("src/server/network.blink") then
+	executeCommand("blink", { "src/server/network.blink" })
 end
 
 executeCommand("rojo", {

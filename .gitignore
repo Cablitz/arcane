@@ -1,10 +1,13 @@
 sourcemap.json
-Packages/
+luau_packages/
+lune_packages/
+roblox_packages/
 **/*.rbx[lm]*
 .DS_Store
 roblox.yml
 roblox.toml
 globalTypes.d.lua
+pesde.lock
 
 **/sourcemap.json
 dist/

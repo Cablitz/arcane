@@ -1,5 +1,5 @@
 {
-  "name": "chainsaw",
+  "name": "arcane",
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {
@@ -14,7 +14,7 @@
       },
       "packages": {
         "$className": "Folder",
-        "$path": "./packages"
+        "$path": "./roblox_packages"
       },
       "$path": "./assets/ReplicatedStorage"
     },
@@ -24,10 +24,6 @@
       },
       "server": {
         "$path": "dist/server"
-      },
-      "server-packages": {
-        "$className": "Folder",
-        "$path": "./server-packages"
       }
     },
     "ServerStorage": {
@@ -56,8 +52,7 @@
       "ReplicatedStorage/packages",
       "ReplicatedStorage/network",
       "ServerScriptService/network",
-      "ServerScriptService/server",
-      "ServerScriptService/server-packages"
+      "ServerScriptService/server"
     ],
     "syncUnscriptable": true
   }
