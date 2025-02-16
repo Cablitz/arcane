@@ -24,8 +24,8 @@ local hasDarkLua = fs.isFile(".darklua.json")
 local buildPath = hasDarkLua and "build" or "default"
 
 local function processFiles()
-	if fs.isFile("src/server/network.blink") then
-		executeCommand("blink", { "src/server/network.blink" })
+	if fs.isFile("network.blink") then
+		executeCommand("blink", { "network.blink" })
 	end
 
 	if fs.isFile(".darklua.json") then

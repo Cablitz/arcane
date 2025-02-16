@@ -32,11 +32,11 @@ local function recursiveCopy(src, dest)
 	end
 end
 
-if fs.isFile("src/server/network.blink") then
-	execCommandWrapper("blink", { "src/server/network.blink" })
+if fs.isFile("network.blink") then
+	execCommandWrapper("blink", { "network.blink" })
 end
 
-if not fs.isDir("packages") and not fs.isDir("Packages") and fs.isFile("wally.toml") then
+if not fs.isDir("roblox_packages") and fs.isFile("pesde.toml") then
 	execCommandWrapper("lune", { "run", "install-packages" })
 end
 

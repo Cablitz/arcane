@@ -3,11 +3,11 @@ local fs = require("@lune/fs")
 local logger = require("./lib/logger").new(4)
 local executeCommand = require("./lib/executeCommand")
 
-if fs.isDir("packages") then
-	fs.removeDir("packages")
+if fs.isDir("roblox_packages") then
+	fs.removeDir("roblox_packages")
 end
 
-local status = executeCommand("wally", {
+local status = executeCommand("pesde", {
 	"install",
 }, {
 	stdio = "inherit",
@@ -18,13 +18,13 @@ if not status.ok then
 	return
 end
 
-if not fs.isDir("packages") then
-	fs.writeDir("packages")
+if not fs.isDir("roblox_packages") then
+	fs.writeDir("roblox_packages")
 end
 
 -- do this so the project file doesn't refer to files that don't exist and cause rojo to fail
-if fs.isFile("src/server/network.blink") then
-	executeCommand("blink", { "src/server/network.blink" })
+if fs.isFile("network.blink") then
+	executeCommand("blink", { "network.blink" })
 end
 
 executeCommand("rojo", {
@@ -33,33 +33,5 @@ executeCommand("rojo", {
 	"-o",
 	"sourcemap.json",
 })
-
-if fs.isDir("Packages") then
-	local packageTypeStatus = executeCommand("wally-package-types", {
-		"--sourcemap",
-		"sourcemap.json",
-		"./Packages",
-	}, nil, true)
-
-	if packageTypeStatus.ok then
-		logger:info("Successfully generated package types!")
-	else
-		logger:error("Failed to generate package types!")
-	end 
-
-    local success, result = pcall(function()
-        if fs.isDir("./Packages") then
-            fs.move("./Packages", "./packages", true)
-        end
-        
-        if fs.isDir("./ServerPackages") then
-            fs.move("./ServerPackages", "./ServerPackages", true)
-        end
-    end)
-
-    if not success then
-        warn("Failed to rename package folders (this is generally caused by wally/wally-package-types locking a file in the directory): " .. tostring(result))
-    end
-end
 
 logger:info("Installed packages!")
