@@ -57,17 +57,10 @@ local function applyHit()
             world:set(targetRef, pair(Lifetime, Ragdoll), 3)
 
             local knockbackLookVector = (targetRoot.Position - attackerRoot.Position).Unit
-
-            if not world:has(targetRef, Human) then
-                targetRoot:ApplyAngularImpulse(Vector3.new(-90, 0, 0))
-
-                world:set(targetRef, Velocity, knockbackLookVector * 30)
-                world:set(targetRef, pair(Lifetime, Velocity), 0.25)
-            else
-                local targetPlayerRef = world:parent(targetRef)
-                local targetPlayer = world:get(targetPlayerRef, Player)
-                blink.KnockbackCharacter.Fire(targetPlayer, knockbackLookVector)
-            end
+            
+            targetRoot:ApplyAngularImpulse(Vector3.new(-90, 0, 0))
+            world:set(targetRef, Velocity, knockbackLookVector * 30)
+            world:set(targetRef, pair(Lifetime, Velocity), 0.25)
         end
 
         world:delete(hitEntity)

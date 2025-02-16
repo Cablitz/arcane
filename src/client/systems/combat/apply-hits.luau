@@ -60,15 +60,6 @@ local function applyHit()
 
         emitParticle(bloodParticle)
     end
-
-    for _, knockbackLookVector in blink.KnockbackCharacter.Iter() do
-        for targetEntity, root in world:query(Root):with(Client):iter() do
-            root:ApplyAngularImpulse(Vector3.new(-90, 0, 0))
-
-            world:set(targetEntity, Velocity, knockbackLookVector * 30)
-            world:set(targetEntity, pair(Lifetime, Velocity), 0.25)
-        end
-    end
 end
 
 return {

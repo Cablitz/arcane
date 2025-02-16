@@ -36,10 +36,3 @@ event HitCharacter {
     call: SingleSync,
     data: Instance(Model)
 }
-
-event KnockbackCharacter {
-    from: Server,
-    type: Reliable,
-    call: SingleSync,
-    data: vector
-}
