@@ -92,4 +92,13 @@ function exports.setupRagdoll(character)
     character.Humanoid.RequiresNeck = false
 end
 
+function exports.ragdollHumanoidState(humanoid)
+    humanoid:ChangeState(Enum.HumanoidStateType.Ragdoll)
+    humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp, false)
+end
+
+function exports.unragdollHumanoidState(humanoid)
+    humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+end
+
 return exports

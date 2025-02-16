@@ -12,6 +12,7 @@ local cts: {
     Client: Entity,
     Human: Entity,
     Setup: Entity,
+    Root: Entity<BasePart>,
 } = {
     Character = world:component(),
     Humanoid = world:component(),
@@ -20,6 +21,7 @@ local cts: {
     Client = world:component(),
     Human = world:entity(),
     Setup = world:entity(),
+    Root = world:component(),
 }
 
 return cts

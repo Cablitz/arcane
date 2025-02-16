@@ -7,6 +7,8 @@ local world = require("@std/world")
 
 local replaceJoints = ragdollUtils.replaceJoints
 local resetJoints = ragdollUtils.resetJoints
+local ragdollHumanoidState = ragdollUtils.ragdollHumanoidState
+local unragdollHumanoidState = ragdollUtils.unragdollHumanoidState
 
 local characterCts = require("@cts/character")
 local Character = characterCts.Character
@@ -23,8 +25,7 @@ local function ragdoll()
         if world:has(characterEntity, Human) then
             humanoid.AutoRotate = false
         else
-            humanoid:ChangeState(Enum.HumanoidStateType.Ragdoll)
-            humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp, false)
+            ragdollHumanoidState(humanoid)
         end
 
         world:add(characterEntity, pair(Previous, Ragdoll))
@@ -38,7 +39,7 @@ local function ragdoll()
         if world:has(characterEntity, Human) then
             humanoid.AutoRotate = true
         else
-            humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+            unragdollHumanoidState(humanoid)
         end
 
         world:remove(characterEntity, pair(Previous, Ragdoll))

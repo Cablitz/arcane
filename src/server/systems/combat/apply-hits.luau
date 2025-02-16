@@ -14,12 +14,16 @@ local characterCts = require("@cts/character")
 local Character = characterCts.Character
 local Human = characterCts.Human
 local Ragdoll = characterCts.Ragdoll
+local Root = characterCts.Root
 
 local abilityCts = require("@cts/ability")
 local Combo = abilityCts.Combo
 
 local animationCts = require("@cts/animation")
 local Animation = animationCts.Animation
+
+local physicsCts = require("@cts/physics")
+local Velocity = physicsCts.Velocity
 
 local baseCts = require("@cts/base")
 local Target = baseCts.Target
@@ -31,6 +35,8 @@ local function applyHit()
         local attackerRef = world:target(hitEntity, ChildOf)
         local targetRef = world:target(hitEntity, Target)
         local targetCharacter = world:get(targetRef, Character)
+        local targetRoot = world:get(targetRef, Root)
+        local attackerRoot = world:get(attackerRef, Root)
 
         blink.CharacterHit.FireAll(targetCharacter)
 
@@ -47,6 +53,14 @@ local function applyHit()
         if world:get(attackerRef, Combo) == 4 then
             world:add(targetRef, Ragdoll)
             world:set(targetRef, pair(Lifetime, Ragdoll), 3)
+
+            if not world:has(targetRef, Human) then
+                targetRoot:ApplyAngularImpulse(Vector3.new(-90, 0, 0))
+
+                local knockbackLookVector = (targetRoot.Position - attackerRoot.Position).Unit
+                world:set(targetRef, Velocity, knockbackLookVector * 25)
+                world:set(targetRef, pair(Lifetime, Velocity), 0.25)
+            end
         end
 
         world:delete(hitEntity)
