@@ -1,19 +1,19 @@
-local process = require("@lune/process")
 local fs = require("@lune/fs")
+local process = require("@lune/process")
 
-local logger = require("./lib/logger").new(4)
 local executeCommand = require("./lib/executeCommand")
+local logger = require("./lib/logger").new(4)
 
 local didError = false
 
 local function execCommandWrapper(...)
-    local data = executeCommand(...)
+	local data = executeCommand(...)
 
-    if data.stderr ~= "" then
-        didError = true
-    end
+	if data.stderr ~= "" then
+		didError = true
+	end
 
-    return data
+	return data
 end
 
 local function recursiveCopy(src, dest)
@@ -25,7 +25,7 @@ local function recursiveCopy(src, dest)
 
 		if meta.kind == "file" then
 			fs.writeDir(dest)
-			fs.writeFile(`{dest}/{file}`,  fs.readFile(path))
+			fs.writeFile(`{dest}/{file}`, fs.readFile(path))
 		elseif meta.kind == "dir" then
 			recursiveCopy(path, `{dest}/{file}`)
 		end
@@ -47,8 +47,8 @@ execCommandWrapper("rojo", { "sourcemap", "default.project.json", "-o", "sourcem
 if hasDarkLua then
 	process.env.RBLX_DEV = "this value should be taken out of the code"
 	execCommandWrapper("darklua", { "process", "src", "temp" })
-else 
-    recursiveCopy("src", "temp")
+else
+	recursiveCopy("src", "temp")
 end
 
 -- Optional processing steps here
@@ -62,7 +62,8 @@ end
 
 if not didError then
 	execCommandWrapper("rojo", { "build", "build.project.json", "-o", "build.rbxl" })
-	logger:success("Build complete!")
+	execCommandWrapper("mantle", { "deploy", "-e", "dev" })
+	logger:success("Build and Deployment complete!")
 else
 	logger:error("Build failed due to errors.")
 end

@@ -1,0 +1,29 @@
+environments:
+  - label: dev
+    targetNamePrefix: environmentLabel
+  - label: prod
+    targetAccess: public
+
+target:
+  experience:
+    configuration:
+      genre: naval
+      playableDevices: [computer]
+      privateServers:
+        price: 50
+      enableStudioAccessToApis: true
+      avatarType: r6
+    places:
+      start:
+        file: build.rbxl
+        configuration:
+          name: Arcane
+          description: |-
+            Fight others using abilities from Arcane!
+
+          maxPlayerCount: 15
+    socialLinks:
+      - title: Follow me!
+        url: https://twitter.com/CablitzRBLX
+      - title: Follow me!
+        url: https://youtube.com/@Cablitz

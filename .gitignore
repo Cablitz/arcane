@@ -13,3 +13,4 @@ pesde.lock
 dist/
 .zap/
 .blink/
+*.env

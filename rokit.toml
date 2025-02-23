@@ -1,2 +1,3 @@
 [tools]
 rojo = "UpliftGames/rojo@7.4.0-uplift.syncback.rc.19"
+mantle = "blake-mealey/mantle@0.11.17-prerelease"
