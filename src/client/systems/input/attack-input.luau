@@ -1,5 +1,5 @@
-local jecs = require("@packages/jecs")
 local blink = require("@blink/client")
+local jecs = require("@packages/jecs")
 
 local pair = jecs.pair
 local ChildOf = jecs.ChildOf

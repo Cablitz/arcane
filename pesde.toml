@@ -29,8 +29,9 @@ vide = { wally = "centau/vide", version = "^0.3.1" }
 jabby = { wally = "alicesaidhi/jabby", version = "^0.2.0-rc.9" }
 spark = { wally = "nezuo/spark", version = "^0.2.2" }
 stateq = { wally = "busycityguy/stateq", version = "^0.0.6" }
-planck = { wally = "yetanotherclown/planck", version = "^0.1.0" }
-planck-jabby = { wally = "yetanotherclown/planck-jabby", version = "^0.1.0" }
-matter-hooks = { wally = "yetanotherclown/planck-matter-hooks", version = "^0.1.0" }
+planck = { wally = "yetanotherclown/planck", version = "^0.2.0-rc.2" }
+planck-jabby = { wally = "yetanotherclown/planck-jabby", version = "^0.2.0-rc.1" }
+planck-runservice = { wally = "yetanotherclown/planck-runservice", version = "^0.2.0-rc.1" }
+matter-hooks = { wally = "yetanotherclown/planck-matter-hooks", version = "^0.2.0-rc.1" }
 matter = { wally = "matter-ecs/matter", version = "^0.8.5" }
 jecs = { wally = "ukendio/jecs", version = "^0.5.3" }

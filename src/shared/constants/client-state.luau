@@ -1,5 +1,5 @@
-local spark = require("@packages/spark")
 local matter = require("@packages/matter")
+local spark = require("@packages/spark")
 
 local InputState = spark.InputState
 local Actions = spark.Actions

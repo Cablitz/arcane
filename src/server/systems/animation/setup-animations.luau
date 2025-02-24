@@ -1,5 +1,5 @@
-local jecs = require("@packages/jecs")
 local animationUtils = require("@shared/utils/animation-utils")
+local jecs = require("@packages/jecs")
 
 local loadAnimation = animationUtils.loadAnimation
 

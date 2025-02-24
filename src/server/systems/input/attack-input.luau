@@ -1,11 +1,11 @@
-local jecs = require("@packages/jecs")
 local blink = require("@blink/server")
+local jecs = require("@packages/jecs")
 
 local pair = jecs.pair
 local ChildOf = jecs.ChildOf
 
-local world = require("@std/world")
 local ref = require("@std/ref")
+local world = require("@std/world")
 
 local abilityCts = require("@cts/ability")
 local Attack = abilityCts.Attack

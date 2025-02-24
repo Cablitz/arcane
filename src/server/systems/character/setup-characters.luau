@@ -6,8 +6,8 @@ local ragdollUtils = require("@shared/utils/ragdoll-utils")
 local pair = jecs.pair
 local ChildOf = jecs.ChildOf
 
-local world = require("@std/world")
 local ref = require("@std/ref")
+local world = require("@std/world")
 
 local setupRagdoll = ragdollUtils.setupRagdoll
 

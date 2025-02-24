@@ -3,8 +3,8 @@ local planck = require("@packages/planck")
 
 local dummies = ServerStorage.dummies
 
-local world = require("@std/world")
 local ref = require("@std/ref")
+local world = require("@std/world")
 
 local characterCts = require("@cts/character")
 local Character = characterCts.Character

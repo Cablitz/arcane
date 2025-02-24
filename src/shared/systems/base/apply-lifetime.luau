@@ -1,5 +1,5 @@
-local matter = require("@packages/matter")
 local jecs = require("@packages/jecs")
+local matter = require("@packages/matter")
 
 local pair = jecs.pair
 local __ = jecs.Wildcard

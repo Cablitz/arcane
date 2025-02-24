@@ -1,12 +1,12 @@
+local blink = require("@blink/server")
 local jecs = require("@packages/jecs")
 local matter = require("@packages/matter")
-local blink = require("@blink/server")
 
 local pair = jecs.pair
 local ChildOf = jecs.ChildOf
 
-local world = require("@std/world")
 local ref = require("@std/ref")
+local world = require("@std/world")
 
 local playerCts = require("@cts/player")
 local Player = playerCts.Player

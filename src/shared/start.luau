@@ -1,18 +1,24 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
-
-local planck = require("@packages/planck")
-local jabby = require("@packages/jabby")
+local UserInputService = game:GetService("UserInputService")
 local PlanckJabby = require("@packages/planck-jabby")
+local jabby = require("@packages/jabby")
 local matterHooks = require("@packages/matter-hooks")
+local planck = require("@packages/planck")
+local planckRunService = require("@packages/planck-runservice")
 
+local Scheduler = planck.Scheduler
 local jabbyPlugin = PlanckJabby.new()
+local runServicePlugin = planckRunService.Plugin.new()
 local hooksPlugin = matterHooks.Plugin.new(ReplicatedStorage.packages[".pesde"]["matter-ecs_matter@0.8.5"])
 
 local function start(containers: { Instance }, state)
-	local scheduler = planck.Scheduler.new(state):addPlugin(jabbyPlugin):addPlugin(hooksPlugin)
+	-- stylua: ignore
+	local scheduler = Scheduler.new(state)
+		:addPlugin(jabbyPlugin)
+		:addPlugin(runServicePlugin)
+		:addPlugin(hooksPlugin)
 
 	for _, container in containers do
 		for _, module in container:GetDescendants() do
